@@ -92,7 +92,7 @@
         /* Hero Section - Background Image Full Width */
         header {
             background: linear-gradient(rgba(27, 77, 62, 0.85), rgba(44, 110, 73, 0.7)), 
-                        url("photo-crous.jpg");
+                        url('https://images.unsplash.com/photo-1541339907198-e08756dedf3f?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80');
             background-size: cover;
             background-position: center;
             background-attachment: fixed;
@@ -148,12 +148,14 @@
         }
 
         .btn-dark {
-            background-color: var(--dark);
+            background-color: #2a2d2a;
+            border: 1px solid #4caf50;
+            color: white;
             box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
         }
         
         .btn-dark:hover {
-            background-color: #343a40;
+            background-color: #3e7b3e;
         }
 
         /* Main Container */
@@ -206,7 +208,7 @@
             text-align: center;
             max-width: 600px;
             margin: 0 auto 3rem auto;
-            padding-top: 4rem; /* Pour le décalage du menu collant */
+            padding-top: 4rem; 
         }
 
         .section-title h2 {
@@ -481,22 +483,114 @@
             letter-spacing: 0.5px;
         }
 
-        /* Zone Téléchargement Livrables */
+        /* =========================================
+           NOUVEAU DESIGN : ZONE SÉCURISÉE SOMBRE
+           ========================================= */
         .livrables-section {
-            background-color: var(--light);
+            background-color: #1a1c1a; /* Fond sombre profond */
+            color: #ffffff;
             border-radius: 24px;
             padding: 4rem;
-            text-align: center;
             margin-bottom: 4rem;
-            border: 2px dashed #ced4da;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.2);
+            position: relative;
+            overflow: hidden;
         }
 
+        .livrables-section::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 4px;
+            background: linear-gradient(90deg, var(--accent), var(--primary-light));
+        }
+
+        .livrables-content {
+            max-width: 600px;
+        }
+
+        .livrables-eyebrow {
+            color: #8bc34a;
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            display: block;
+        }
+
+        .livrables-section h2 {
+            font-size: 3rem;
+            margin-top: 0;
+            margin-bottom: 1rem;
+            line-height: 1.1;
+        }
+
+        .livrables-section p {
+            color: #a0aab2;
+            font-size: 1.1rem;
+            line-height: 1.6;
+            margin-bottom: 2.5rem;
+        }
+
+        /* Formulaire de mot de passe intégré */
+        .password-form-inline {
+            display: flex;
+            gap: 15px;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+
+        .password-form-inline input {
+            background-color: #2a2d2a;
+            border: 1px solid #3d403d;
+            color: white;
+            padding: 1rem 1.5rem;
+            border-radius: 30px;
+            outline: none;
+            font-size: 1rem;
+            flex-grow: 1;
+            max-width: 300px;
+            transition: border-color 0.3s;
+        }
+
+        .password-form-inline input:focus {
+            border-color: #4caf50;
+        }
+
+        .password-form-inline button {
+            background-color: transparent;
+            color: white;
+            border: 1px solid #4caf50;
+            padding: 1rem 2rem;
+            border-radius: 30px;
+            cursor: pointer;
+            font-weight: bold;
+            font-size: 1rem;
+            transition: all 0.3s;
+        }
+
+        .password-form-inline button:hover {
+            background-color: rgba(76, 175, 80, 0.1);
+        }
+
+        .error-msg {
+            color: #ff6b6b;
+            font-size: 0.9rem;
+            display: none;
+            margin-top: 10px;
+        }
+
+        /* Grille des boutons une fois débloqué */
         .livrables-grid {
             display: flex;
-            justify-content: center;
             gap: 1.5rem;
-            margin-top: 2.5rem;
             flex-wrap: wrap;
+            animation: fadeIn 0.5s ease forwards;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
         }
 
         footer {
@@ -529,7 +623,16 @@
                 gap: 0;
             }
             .nav-links {
-                display: none; /* Cache les liens texte sur mobile, garde juste le logo et le badge */
+                display: none;
+            }
+            .password-form-inline {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+            .password-form-inline input {
+                max-width: 100%;
+                width: 100%;
+                box-sizing: border-box;
             }
         }
     </style>
@@ -756,17 +859,28 @@
         </section>
 
         <section id="livrables" class="livrables-section">
-            <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="#1b4d3e" stroke-width="2" style="margin-bottom: 1rem;">
-                <rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect>
-                <path d="M7 11V7a5 5 0 0 1 10 0v4"></path>
-            </svg>
-            <h2 style="color: var(--primary); margin-top: 0;">Espace de Suivi Pédagogique</h2>
-            <p style="color: var(--dark); max-width: 600px; margin: 0 auto;">Conformément à notre politique de confidentialité, l'accès aux plans conceptuels, modèles économiques et au cahier de laboratoire est restreint aux membres du jury Polytech.</p>
-            
-            <div class="livrables-grid">
-                <button onclick="downloadLivrable('Livrable_1_Executive_Summary')" class="hero-cta btn-dark">Télécharger Livrable 1</button>
-                <button onclick="downloadLivrable('Livrable_2_Gestion_Information')" class="hero-cta btn-dark">Télécharger Livrable 2</button>
-                <button onclick="downloadLivrable('Livrable_9_Plan_Conceptuel')" class="hero-cta btn-dark">Télécharger Livrable 9</button>
+            <div class="livrables-content" id="lock-screen">
+                <span class="livrables-eyebrow">ESPACE ENSEIGNANTS</span>
+                <h2>Nos livrables du hackathon.</h2>
+                <p>Accès réservé à l'équipe pédagogique. Entrez le mot de passe pour télécharger les documents et notre cahier de laboratoire confidentiel.</p>
+                
+                <form onsubmit="unlockLivrables(event)" class="password-form-inline">
+                    <input type="password" id="jury-password" placeholder="Mot de passe enseignant" required>
+                    <button type="submit">Accéder</button>
+                </form>
+                <div id="password-error" class="error-msg">Mot de passe incorrect.</div>
+            </div>
+
+            <div id="unlocked-content" style="display: none;">
+                <span class="livrables-eyebrow" style="color: #4caf50;">✓ ACCÈS AUTORISÉ</span>
+                <h2>Documents déverrouillés.</h2>
+                <p style="margin-bottom: 2rem;">Voici les liens vers nos espaces de travail sécurisés (Drive / Moodle).</p>
+                
+                <div class="livrables-grid">
+                    <button onclick="downloadLivrable('Livrable_1_Executive_Summary')" class="hero-cta btn-dark">Livrable 1 (Executive Summary)</button>
+                    <button onclick="downloadLivrable('Livrable_2_Gestion_Information')" class="hero-cta btn-dark">Livrable 2 (Gestion Info)</button>
+                    <button onclick="downloadLivrable('Livrable_9_Plan_Conceptuel')" class="hero-cta btn-dark">Livrable 9 (Plan Conceptuel)</button>
+                </div>
             </div>
         </section>
 
@@ -777,8 +891,8 @@
     </footer>
 
     <script>
-        // --- Navigation Fluide & UX ---
-        // Le scroll fluide est géré en CSS : html { scroll-behavior: smooth; }
+        // --- Navigation Fluide ---
+        // Le scroll fluide est géré en CSS via html { scroll-behavior: smooth; }
 
         // --- Constantes du modèle de simulation ---
         const KG_DECHET_PAR_REPAS = 0.039; // Moyenne de 39g / repas
@@ -820,22 +934,39 @@
         // Init Simulateur
         updateFromRepas();
 
-        // --- Gestion de la diffusion contrôlée (Livrable 2) ---
+        // --- GESTION DU DÉVERROUILLAGE ESTHÉTIQUE ---
+        function unlockLivrables(e) {
+            e.preventDefault(); // Empêche la page de se recharger
+            const pwdInput = document.getElementById('jury-password');
+            const errorMsg = document.getElementById('password-error');
+            const lockScreen = document.getElementById('lock-screen');
+            const unlockedContent = document.getElementById('unlocked-content');
+
+            // Le mot de passe de démonstration pour le jury
+            if (pwdInput.value === 'polytech') {
+                lockScreen.style.display = 'none'; // Cache le formulaire
+                unlockedContent.style.display = 'block'; // Montre les boutons
+                errorMsg.style.display = 'none';
+            } else {
+                errorMsg.style.display = 'block'; // Affiche l'erreur en rouge
+            }
+        }
+
+        // --- GESTION DE LA VRAIE DIFFUSION CONTRÔLÉE (Livrable 2) ---
         function downloadLivrable(docId) {
             // Remplacez ces URL par les liens de partage restreints (Drive, Moodle, etc.)
             const liensSecurises = {
                 'Livrable_1_Executive_Summary': 'https://docs.google.com/document/d/1R4ap_FIG7sOYMVhwUYmF1yTKoAM19lqBZr4tybdTS5w/edit?usp=drive_link',
-                'Livrable_2_Gestion_Information': 'https://drive.google.com/file/d/TON_LIEN_DRIVE_2',
+                'Livrable_2_Gestion_Information': 'https://moodle.uca.fr/ton-lien',
                 'Livrable_9_Plan_Conceptuel': 'https://drive.google.com/file/d/TON_LIEN_DRIVE_9'
             };
 
             const url = liensSecurises[docId];
             
-            if (url) {
-                // Ouvre l'espace sécurisé dans un nouvel onglet
+            if (url && url !== 'https://moodle.uca.fr/ton-lien' && !url.includes('TON_LIEN_DRIVE')) {
                 window.open(url, '_blank');
             } else {
-                alert("Document sécurisé en cours de finalisation.");
+                alert("Redirection en cours de configuration vers l'espace Drive/Moodle de l'équipe.");
             }
         }
     </script>
