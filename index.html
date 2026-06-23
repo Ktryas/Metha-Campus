@@ -208,6 +208,25 @@
             margin: 0;
         }
 
+        /* --- NOUVELLES SECTIONS --- */
+        
+        /* Partenaires (Preuve Sociale) */
+        .partners-section {
+            text-align: center;
+            margin-bottom: 5rem;
+            padding: 2rem 0;
+            background-color: var(--white);
+            border-radius: 16px;
+            box-shadow: var(--shadow);
+            margin-top: -3rem; /* Remonte légèrement sous les cartes concept */
+            position: relative;
+            z-index: 10;
+        }
+        .partners-section p { color: #6c757d; font-size: 0.9rem; text-transform: uppercase; letter-spacing: 1px; font-weight: 600; margin-bottom: 1.5rem; }
+        .partners-logos { display: flex; justify-content: center; gap: 4rem; flex-wrap: wrap; opacity: 0.6; filter: grayscale(100%); transition: var(--transition); }
+        .partners-logos:hover { opacity: 1; filter: grayscale(0%); }
+        .partners-logos span { font-weight: 800; font-size: 1.3rem; color: var(--primary); display: flex; align-items: center; }
+
         /* Section Section Title */
         .section-title {
             text-align: center;
@@ -363,6 +382,13 @@
             font-weight: 500;
         }
 
+        /* Digestat & Intégration Paysagère */
+        .split-section { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; margin-bottom: 5rem; align-items: center; }
+        .split-text h3 { color: var(--primary); font-size: 1.8rem; margin-top: 0; }
+        .split-text p { color: #5c677d; line-height: 1.7; }
+        .image-placeholder { background-color: var(--light); border-radius: 16px; height: 350px; display: flex; flex-direction: column; align-items: center; justify-content: center; color: #adb5bd; border: 2px dashed #ced4da; text-align: center; padding: 2rem; }
+        .image-placeholder svg { margin-bottom: 1rem; }
+
         /* Section Investisseurs & Stratégie */
         .investor-specs {
             background-color: var(--primary);
@@ -403,6 +429,14 @@
             gap: 1rem;
             border-left: 4px solid var(--accent);
         }
+
+        /* Roadmap */
+        .timeline { display: flex; gap: 1.5rem; margin-bottom: 5rem; overflow-x: auto; padding-bottom: 1rem; }
+        .timeline-step { flex: 1; background: var(--white); padding: 1.5rem; border-radius: 12px; border-left: 4px solid var(--accent); box-shadow: var(--shadow); min-width: 220px; position: relative; }
+        .timeline-step.done { border-left-color: var(--primary); opacity: 0.7; }
+        .timeline-step span { display: block; font-size: 0.85rem; color: var(--primary-light); font-weight: 700; margin-bottom: 0.5rem; text-transform: uppercase; }
+        .timeline-step h4 { color: var(--dark); margin: 0 0 0.5rem 0; font-size: 1.1rem; }
+        .timeline-step p { margin: 0; font-size: 0.9rem; color: #6c757d; }
 
         /* FAQ Section */
         .faq-section {
@@ -508,6 +542,13 @@
             font-weight: 700;
             letter-spacing: 0.5px;
         }
+
+        /* Appel à l'action Usagers */
+        .cta-usagers { background: linear-gradient(135deg, var(--accent-light) 0%, #d4edd6 100%); padding: 4rem 2rem; border-radius: 24px; text-align: center; margin-bottom: 5rem; border: 1px solid rgba(76, 175, 80, 0.2); }
+        .cta-usagers h2 { color: var(--primary); margin-top: 0; font-size: 2rem; }
+        .cta-usagers p { color: var(--primary-light); font-size: 1.1rem; max-width: 600px; margin: 0 auto 2rem auto; }
+        .btn-usager { background-color: var(--primary); color: var(--white); padding: 1rem 2.5rem; border-radius: 8px; text-decoration: none; font-weight: 600; display: inline-block; transition: var(--transition); box-shadow: 0 4px 15px rgba(27, 77, 62, 0.2); }
+        .btn-usager:hover { background-color: var(--primary-light); transform: translateY(-2px); color: var(--white); }
 
         /* Zone Sécurisée Sombre */
         .livrables-section {
@@ -628,7 +669,7 @@
 
         /* Responsive UI */
         @media (max-width: 992px) {
-            .dashboard-simulator, .investor-specs {
+            .dashboard-simulator, .investor-specs, .split-section {
                 grid-template-columns: 1fr;
                 gap: 2.5rem;
             }
@@ -702,6 +743,15 @@
             </div>
         </section>
 
+        <section class="partners-section">
+            <p>Soutiens et partenaires potentiels</p>
+            <div class="partners-logos">
+                <span>CROUS Clermont Auvergne</span>
+                <span>Université Clermont Auvergne</span>
+                <span>Polytech Clermont</span>
+            </div>
+        </section>
+
         <section id="simulateur" class="section-title">
             <h2>Indicateurs de Performance</h2>
             <p>Modélisez en temps réel le rendement d'exploitation et l'impact de l'unité Métha Campus.</p>
@@ -765,6 +815,18 @@
             </div>
         </section>
 
+        <section class="split-section">
+            <div class="image-placeholder">
+                <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="#adb5bd" stroke-width="2"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"></path><polyline points="3.27 6.96 12 12.01 20.73 6.96"></polyline><line x1="12" y1="22.08" x2="12" y2="12"></line></svg>
+                <span>Emplacement pour maquette 3D de l'unité sur le campus des Cézeaux</span>
+            </div>
+            <div class="split-text">
+                <h3>Au-delà du biogaz : Le Digestat</h3>
+                <p>La méthanisation ne produit pas que de l'énergie. Elle génère également un <strong>digestat</strong>, un résidu organique riche en nutriments.</p>
+                <p>Plutôt que d'être considéré comme un déchet, ce digestat sera stocké de manière sécurisée (sans nuisance olfactive) et redistribué aux services des espaces verts du campus et aux maraîchers locaux comme fertilisant naturel de haute qualité.</p>
+            </div>
+        </section>
+
         <section class="investor-specs">
             <div>
                 <h2>Faisabilité & Réalité Économique</h2>
@@ -786,6 +848,34 @@
                         <div><strong>Scalabilité :</strong> Extensible aux hôpitaux et entreprises</div>
                     </li>
                 </ul>
+            </div>
+        </section>
+
+        <section id="roadmap" class="section-title">
+            <h2>Feuille de Route</h2>
+            <p>Les prochaines étapes de déploiement du projet Métha Campus.</p>
+        </section>
+
+        <section class="timeline">
+            <div class="timeline-step done">
+                <span>Phase 1 - Terminée</span>
+                <h4>Étude de Faisabilité</h4>
+                <p>Analyse des gisements, dimensionnement de l'unité et simulation ROI via Hackathon.</p>
+            </div>
+            <div class="timeline-step">
+                <span>Phase 2 - T3 2026</span>
+                <h4>Prototypage & Maquette</h4>
+                <p>Conception 3D de l'intégration paysagère et montage du dossier réglementaire.</p>
+            </div>
+            <div class="timeline-step">
+                <span>Phase 3 - T1 2027</span>
+                <h4>Recherche de Financement</h4>
+                <p>Présentation du CAPEX aux instances universitaires et partenaires locaux.</p>
+            </div>
+            <div class="timeline-step">
+                <span>Phase 4 - T3 2027</span>
+                <h4>Déploiement Pilote</h4>
+                <p>Installation de l'unité modulaire et lancement des campagnes de tri étudiantes.</p>
             </div>
         </section>
 
@@ -867,6 +957,12 @@
                 <h4>Capucine Hummel</h4>
                 <p>Communication</p>
             </div>
+        </section>
+
+        <section class="cta-usagers">
+            <h2>Étudiants, le tri commence par vous.</h2>
+            <p>La rentabilité et l'impact écologique de Métha Campus reposent sur un geste simple : séparer vos restes alimentaires à la cantine.</p>
+            <a href="#" class="btn-usager">Rejoindre les ambassadeurs du tri</a>
         </section>
 
         <section id="livrables" class="livrables-section">
