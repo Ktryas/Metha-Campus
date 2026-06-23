@@ -47,12 +47,17 @@
         .logo-container {
             display: flex;
             align-items: center;
-            gap: 10px;
-            font-weight: 700;
-            font-size: 1.2rem;
-            color: var(--primary);
-            letter-spacing: 0.5px;
             text-decoration: none;
+        }
+
+        .logo-container img {
+            height: 50px;
+            border-radius: 8px;
+            transition: var(--transition);
+        }
+
+        .logo-container img:hover {
+            transform: scale(1.05);
         }
 
         /* Menu de navigation */
@@ -92,7 +97,7 @@
         /* Hero Section - Background Image Full Width */
         header {
             background: linear-gradient(rgba(27, 77, 62, 0.85), rgba(44, 110, 73, 0.7)), 
-                        url("photo-crous.jpg");
+                        url('photo-crous.jpg');
             background-size: cover;
             background-position: center;
             background-attachment: fixed;
@@ -358,44 +363,6 @@
             font-weight: 500;
         }
 
-        /* Formulaire de Contact */
-        .contact-card {
-            background-color: var(--white);
-            border-radius: 24px;
-            box-shadow: var(--shadow);
-            padding: 3.5rem;
-            max-width: 800px;
-            margin: 0 auto 5rem auto;
-            border: 1px solid rgba(0,0,0,0.01);
-        }
-
-        .form-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 1.5rem;
-        }
-
-        .contact-form .input-box {
-            padding: 1rem 1.5rem;
-        }
-        
-        .contact-form input[type="text"], 
-        .contact-form input[type="email"], 
-        .contact-form select, 
-        .contact-form textarea {
-            font-size: 1.1rem;
-            font-weight: 500;
-            padding-top: 0.5rem;
-        }
-
-        .contact-form select {
-            cursor: pointer;
-        }
-
-        .contact-form textarea {
-            resize: vertical;
-        }
-
         /* Section Investisseurs & Stratégie */
         .investor-specs {
             background-color: var(--primary);
@@ -435,6 +402,65 @@
             align-items: center;
             gap: 1rem;
             border-left: 4px solid var(--accent);
+        }
+
+        /* FAQ Section */
+        .faq-section {
+            max-width: 800px;
+            margin: 0 auto 5rem auto;
+        }
+
+        .faq-item {
+            background-color: var(--white);
+            border-radius: 12px;
+            margin-bottom: 1rem;
+            box-shadow: var(--shadow);
+            border: 1px solid rgba(0,0,0,0.01);
+            overflow: hidden;
+        }
+
+        .faq-item details {
+            padding: 1.5rem;
+            transition: var(--transition);
+        }
+
+        .faq-item summary {
+            font-size: 1.1rem;
+            font-weight: 700;
+            color: var(--primary);
+            cursor: pointer;
+            list-style: none; /* Cache la flèche par défaut */
+            position: relative;
+            padding-right: 2rem;
+        }
+
+        /* Masquer la flèche par défaut pour Webkit */
+        .faq-item summary::-webkit-details-marker {
+            display: none;
+        }
+
+        /* Custom Icon */
+        .faq-item summary::after {
+            content: '+';
+            position: absolute;
+            right: 0;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 1.5rem;
+            color: var(--accent);
+            transition: transform 0.3s ease;
+        }
+
+        .faq-item details[open] summary::after {
+            content: '−';
+            transform: translateY(-50%) rotate(180deg);
+        }
+
+        .faq-item p {
+            margin-top: 1rem;
+            margin-bottom: 0;
+            color: #5c677d;
+            line-height: 1.6;
         }
 
         /* Section Organigramme Équipe */
@@ -483,11 +509,9 @@
             letter-spacing: 0.5px;
         }
 
-        /* =========================================
-           NOUVEAU DESIGN : ZONE SÉCURISÉE SOMBRE
-           ========================================= */
+        /* Zone Sécurisée Sombre */
         .livrables-section {
-            background-color: #1a1c1a; /* Fond sombre profond */
+            background-color: #1a1c1a; 
             color: #ffffff;
             border-radius: 24px;
             padding: 4rem;
@@ -618,10 +642,6 @@
             .hero-text h1 {
                 font-size: 3rem;
             }
-            .form-grid {
-                grid-template-columns: 1fr;
-                gap: 0;
-            }
             .nav-links {
                 display: none;
             }
@@ -641,17 +661,12 @@
 
     <nav>
         <a href="#" class="logo-container">
-            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path d="M2 12C2 6.47715 6.47715 2 12 2C17.5228 2 22 6.47715 22 12C22 17.5228 17.5228 22 12 22" stroke="#4caf50" stroke-width="2.5" stroke-linecap="round"/>
-                <path d="M12 6C7.58172 6 4 9.58172 4 14C4 18.4183 7.58172 22 12 22C16.4183 22 20 18.4183 20 14" stroke="#1b4d3e" stroke-width="2.5" stroke-linecap="round"/>
-                <path d="M12 22C15 22 18 19 18 15C18 11 14 8 12 6C10 8 6 11 6 15C6 19 9 22 12 22Z" fill="#4caf50"/>
-            </svg>
-            MÉTHA CAMPUS
+            <img src="image_0c55f6.jpg" alt="Logo Métha Campus">
         </a>
         <div class="nav-links">
             <a href="#concept">Concept</a>
             <a href="#simulateur">Simulateur ROI</a>
-            <a href="#contact">Contact</a>
+            <a href="#faq">FAQ</a>
             <a href="#equipe">L'Équipe</a>
             <a href="#livrables" class="badge-investor">🔒 Espace Jury</a>
         </div>
@@ -774,39 +789,35 @@
             </div>
         </section>
 
-        <section id="contact">
-            <div class="section-title" style="padding-top: 2rem;">
-                <h2>Tester notre proposition</h2>
-                <p>Vous souhaitez en savoir plus sur notre business plan ou évaluer une implémentation sur site ? Laissez-nous vos coordonnées.</p>
+        <section id="faq" class="section-title" style="padding-top: 2rem;">
+            <h2>Questions Fréquentes</h2>
+            <p>Les réponses aux interrogations les plus courantes sur notre unité de valorisation.</p>
+        </section>
+
+        <section class="faq-section">
+            <div class="faq-item">
+                <details>
+                    <summary>Quels points de restauration sont concernés par la collecte ?</summary>
+                    <p>Notre projet cible directement le gisement captif du campus des Cézeaux, à savoir le Restaurant des Cézeaux, le Restaurant de l'IUT et les espaces Saxo (Cafétéria et Cantine)[cite: 16].</p>
+                </details>
             </div>
-            <div class="contact-card">
-                <form class="contact-form" onsubmit="event.preventDefault(); alert('Merci ! Votre demande a bien été transmise à l\'équipe Métha Campus.');">
-                    <div class="form-grid">
-                        <div class="input-box">
-                            <label for="name">Nom complet</label>
-                            <input type="text" id="name" placeholder="ex: Jean Durand" required>
-                        </div>
-                        <div class="input-box">
-                            <label for="email">Adresse e-mail</label>
-                            <input type="email" id="email" placeholder="ex: jean.durand@uca.fr" required>
-                        </div>
-                    </div>
-                    <div class="input-box">
-                        <label for="role">Votre profil</label>
-                        <select id="role" required>
-                            <option value="">Sélectionnez une option</option>
-                            <option value="investor">Investisseur / Financeur</option>
-                            <option value="uca">Direction UCA / CROUS</option>
-                            <option value="student">Étudiant(e) / Usager</option>
-                            <option value="other">Autre partenaire</option>
-                        </select>
-                    </div>
-                    <div class="input-box">
-                        <label for="message">Votre message</label>
-                        <textarea id="message" rows="3" placeholder="Comment pouvons-nous collaborer ?" required></textarea>
-                    </div>
-                    <button type="submit" class="hero-cta" style="width: 100%; margin-top: 1rem;">Envoyer ma demande</button>
-                </form>
+            <div class="faq-item">
+                <details>
+                    <summary>Pourquoi la méthanisation plutôt que le compostage ?</summary>
+                    <p>La méthanisation anaérobie offre un double avantage : elle permet bien sûr de valoriser la matière (le digestat), mais elle génère surtout du biogaz (méthane)[cite: 20]. Cette énergie renouvelable permet ensuite de réduire les coûts et l'empreinte de la gestion des infrastructures du campus[cite: 17].</p>
+                </details>
+            </div>
+            <div class="faq-item">
+                <details>
+                    <summary>Comment gérez-vous le risque lié au tri des déchets ?</summary>
+                    <p>Le facteur humain (un mauvais tri des restes) est effectivement identifié comme notre risque principal[cite: 60]. Nous prévoyons de le neutraliser en amont grâce à une signalétique claire, des campagnes de sensibilisation et des contrôles réguliers[cite: 58].</p>
+                </details>
+            </div>
+            <div class="faq-item">
+                <details>
+                    <summary>Le projet est-il viable à l'échelle d'un seul campus ?</summary>
+                    <p>À petite échelle, la viabilité repose sur une maîtrise très stricte des coûts d'investissement initiaux[cite: 68]. Notre modèle s'appuie également sur une mutualisation des déchets [cite: 58] et pourrait être étendu par la suite aux autres restaurations collectives de l'éducation, voire aux hôpitaux[cite: 20].</p>
+                </details>
             </div>
         </section>
 
@@ -892,7 +903,7 @@
 
     <script>
         // --- Navigation Fluide ---
-        // Le scroll fluide est géré en CSS via html { scroll-behavior: smooth; }
+        // Géré par CSS : html { scroll-behavior: smooth; }
 
         // --- Constantes du modèle de simulation ---
         const KG_DECHET_PAR_REPAS = 0.039; // Moyenne de 39g / repas
@@ -936,28 +947,26 @@
 
         // --- GESTION DU DÉVERROUILLAGE ESTHÉTIQUE ---
         function unlockLivrables(e) {
-            e.preventDefault(); // Empêche la page de se recharger
+            e.preventDefault();
             const pwdInput = document.getElementById('jury-password');
             const errorMsg = document.getElementById('password-error');
             const lockScreen = document.getElementById('lock-screen');
             const unlockedContent = document.getElementById('unlocked-content');
 
-            // Le mot de passe de démonstration pour le jury
             if (pwdInput.value === 'polytech') {
-                lockScreen.style.display = 'none'; // Cache le formulaire
-                unlockedContent.style.display = 'block'; // Montre les boutons
+                lockScreen.style.display = 'none';
+                unlockedContent.style.display = 'block';
                 errorMsg.style.display = 'none';
             } else {
-                errorMsg.style.display = 'block'; // Affiche l'erreur en rouge
+                errorMsg.style.display = 'block';
             }
         }
 
         // --- GESTION DE LA VRAIE DIFFUSION CONTRÔLÉE (Livrable 2) ---
         function downloadLivrable(docId) {
-            // Remplacez ces URL par les liens de partage restreints (Drive, Moodle, etc.)
             const liensSecurises = {
-                'Livrable_1_Executive_Summary': 'https://docs.google.com/document/d/1R4ap_FIG7sOYMVhwUYmF1yTKoAM19lqBZr4tybdTS5w/edit?usp=drive_link',
-                'Livrable_2_Gestion_Information': 'https://docs.google.com/document/d/1G1emM_mzZrXpubu3KcgGfP5EzN220rRk4kM5ajDO4Yo/edit?usp=sharing',
+                'Livrable_1_Executive_Summary': 'https://docs.google.com/document/d/1R4ap_FIG7sOYMVhwUYmF1yTKoAM19lqBZr4tybdTS5w/edit?usp=sharing',
+                'Livrable_2_Gestion_Information': 'https://docs.google.com/document/d/1G1emM_mzZrXpubu3KcgGfP5EzN220rRk4kM5ajDO4Yo/edit?usp=drive_link',
                 'Livrable_9_Plan_Conceptuel': 'https://drive.google.com/file/d/TON_LIEN_DRIVE_9'
             };
 
