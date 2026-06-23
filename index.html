@@ -821,15 +821,23 @@
         updateFromRepas();
 
         // --- Gestion de la diffusion contrôlée (Livrable 2) ---
-        function downloadLivrable(docName) {
-            // Simulation d'une barrière de sécurité pour respecter les directives de confidentialité
-            const password = prompt("Accès restreint. Veuillez entrer le mot de passe enseignant (Indice : polytech) :");
+        function downloadLivrable(docId) {
+            // Remplacez ces URL par les liens de partage restreints (Drive, Moodle, etc.)
+            const liensSecurises = {
+                'Livrable_1_Executive_Summary': 'https://docs.google.com/document/d/1R4ap_FIG7sOYMVhwUYmF1yTKoAM19lqBZr4tybdTS5w/edit?usp=drive_link',
+                'Livrable_2_Gestion_Information': 'https://drive.google.com/file/d/TON_LIEN_DRIVE_2',
+                'Livrable_9_Plan_Conceptuel': 'https://drive.google.com/file/d/TON_LIEN_DRIVE_9'
+            };
+
+            const url = liensSecurises[docId];
             
-            if (password === "polytech") {
-                alert("Authentification réussie. Le téléchargement de " + docName + ".pdf va commencer.\n\n(Note pour le jury : dans une version de production, le fichier serait hébergé dans un répertoire crypté ou privé sur GitHub).");
-            } else if (password !== null) {
-                alert("Accès refusé : mot de passe incorrect. Conformément à notre politique de confidentialité (Livrable 2), ces documents ne peuvent être divulgués au public.");
+            if (url) {
+                // Ouvre l'espace sécurisé dans un nouvel onglet
+                window.open(url, '_blank');
+            } else {
+                alert("Document sécurisé en cours de finalisation.");
             }
+        }
         }
     </script>
 </body>
