@@ -543,16 +543,28 @@
 
         // --- NOUVELLE LOGIQUE DE SÉCURITÉ ---
         function unlockLivrables(e) {
-            e.preventDefault();
-            const pwdInput = document.getElementById('jury-password');
-            const errorMsg = document.getElementById('password-error');
+    e.preventDefault();
+    const pwdInput = document.getElementById('jury-password');
+    const errorMsg = document.getElementById('password-error');
+    
+    // Nettoyage de l'entrée (minuscules, sans espaces)
+    const attempt = pwdInput.value.toLowerCase().trim();
 
-            if (pwdInput.value === 'polytech') {
-                window.location.href = 'espace-enseignants.html';
+    // On vérifie si le fichier correspondant au mot de passe existe
+    fetch(attempt + '.html', { method: 'HEAD' })
+        .then(response => {
+            if (response.ok) {
+                // Le fichier existe (le mot de passe est le bon nom de fichier)
+                window.location.href = attempt + '.html';
             } else {
+                // Erreur 404 : mauvais mot de passe
                 errorMsg.style.display = 'block';
             }
-        }
+        })
+        .catch(() => {
+            errorMsg.style.display = 'block';
+        });
+}
 
         // --- NOUVELLE LOGIQUE POUR LE MENU MOBILE ---
         const menuBtn = document.getElementById('menuBtn');
