@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Métha Campus | Espace Enseignants</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', -apple-system, BlinkMacSystemFont, Roboto, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #1a1c1a;
+            color: #ffffff;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 800px;
+            width: 100%;
+            padding: 3rem;
+            text-align: left;
+        }
+
+        .livrables-eyebrow {
+            color: #4caf50;
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            display: block;
+        }
+
+        h1 {
+            font-size: 3rem;
+            margin-top: 0;
+            margin-bottom: 1rem;
+            line-height: 1.1;
+        }
+
+        p {
+            color: #a0aab2;
+            font-size: 1.1rem;
+            line-height: 1.6;
+            margin-bottom: 3rem;
+        }
+
+        .livrables-grid {
+            display: flex;
+            gap: 1.5rem;
+            flex-wrap: wrap;
+        }
+
+        .btn-doc {
+            background-color: #2a2d2a;
+            color: white;
+            padding: 1rem 2.5rem;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1.1rem;
+            transition: all 0.3s ease;
+            border: 1px solid #4caf50;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+            display: inline-block;
+        }
+
+        .btn-doc:hover {
+            background-color: #3e7b3e;
+            transform: translateY(-2px);
+        }
+
+        .back-link {
+            display: inline-block;
+            margin-top: 4rem;
+            color: #4caf50;
+            text-decoration: none;
+            font-weight: 600;
+        }
+        
+        .back-link:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <span class="livrables-eyebrow">✓ ACCÈS AUTORISÉ</span>
+        <h1>Documents déverrouillés.</h1>
+        <p>Voici les liens vers nos espaces de travail sécurisés (Drive / Moodle) de l'équipe Métha Campus.</p>
+        
+        <div class="livrables-grid">
+            <a href="https://docs.google.com/document/d/LIEN_REEL_1" target="_blank" class="btn-doc">Livrable 1 (Executive Summary)</a>
+            <a href="https://docs.google.com/document/d/LIEN_REEL_2" target="_blank" class="btn-doc">Livrable 2 (Gestion Info)</a>
+            <a href="https://drive.google.com/file/d/LIEN_REEL_9" target="_blank" class="btn-doc">Livrable 9 (Plan Conceptuel)</a>
+        </div>
+
+        <a href="index.html" class="back-link">← Retour au site principal</a>
+    </div>
+
+</body>
+</html>
