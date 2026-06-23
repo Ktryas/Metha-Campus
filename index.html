@@ -60,12 +60,11 @@
 
         /* Hero Section - Background Image Full Width */
         header {
-            /* Le calque transparent vert foncé par-dessus l'image permet de garder le texte lisible */
             background: linear-gradient(rgba(27, 77, 62, 0.85), rgba(44, 110, 73, 0.7)), 
                         url("photo-crous.jpg");
             background-size: cover;
             background-position: center;
-            background-attachment: fixed; /* Crée un léger effet de parallaxe */
+            background-attachment: fixed;
             color: var(--white);
             padding: 8rem 2rem;
             position: relative;
@@ -128,7 +127,7 @@
             grid-template-columns: repeat(3, 1fr);
             gap: 2rem;
             margin-bottom: 5rem;
-            margin-top: -8rem; /* Fait remonter les cartes légèrement sur le hero */
+            margin-top: -8rem;
             position: relative;
             z-index: 20;
         }
@@ -230,15 +229,19 @@
             font-weight: 600;
         }
 
-        .input-box input {
+        .input-box input, .input-box select, .input-box textarea {
             width: 100%;
             border: none;
             background: transparent;
-            font-size: 1.8rem;
-            font-weight: 700;
+            font-family: inherit;
             color: var(--primary);
             outline: none;
             padding: 0;
+        }
+
+        .input-box input[type="number"] {
+            font-size: 1.8rem;
+            font-weight: 700;
         }
 
         .divider-or {
@@ -308,6 +311,44 @@
             font-size: 0.9rem;
             color: #5c677d;
             font-weight: 500;
+        }
+
+        /* Formulaire de Contact */
+        .contact-card {
+            background-color: var(--white);
+            border-radius: 24px;
+            box-shadow: var(--shadow);
+            padding: 3.5rem;
+            max-width: 800px;
+            margin: 0 auto 5rem auto;
+            border: 1px solid rgba(0,0,0,0.01);
+        }
+
+        .form-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1.5rem;
+        }
+
+        .contact-form .input-box {
+            padding: 1rem 1.5rem;
+        }
+        
+        .contact-form input[type="text"], 
+        .contact-form input[type="email"], 
+        .contact-form select, 
+        .contact-form textarea {
+            font-size: 1.1rem;
+            font-weight: 500;
+            padding-top: 0.5rem;
+        }
+
+        .contact-form select {
+            cursor: pointer;
+        }
+
+        .contact-form textarea {
+            resize: vertical;
         }
 
         /* Section Investisseurs & Stratégie */
@@ -421,12 +462,15 @@
             .hero-text h1 {
                 font-size: 3rem;
             }
+            .form-grid {
+                grid-template-columns: 1fr;
+                gap: 0;
+            }
         }
     </style>
 </head>
 <body>
 
-    <!-- Top Navigation Bar -->
     <nav>
         <div class="logo-container">
             <svg width="28" height="28" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -439,7 +483,6 @@
         <div class="badge-investor">Espace Investisseurs</div>
     </nav>
 
-    <!-- Hero Section avec Image en Fond -->
     <header>
         <div class="hero-container">
             <div class="hero-text">
@@ -452,7 +495,6 @@
 
     <div class="container">
         
-        <!-- Grid de Proposition de Valeur -->
         <section class="grid-propositions">
             <div class="card-prop">
                 <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="#4caf50" stroke-width="2"><path d="M3 6h18M19 6v14c0 1-1 2-2 2H7c-1 0-2-1-2-2V6M8 6V4c0-1 1-2 2-2h4c1 0 2 1 2 2v2M10 11v6M14 11v6"/></svg>
@@ -471,13 +513,11 @@
             </div>
         </section>
 
-        <!-- Section Titre Simulateur -->
         <section class="section-title" id="simulateur">
             <h2>Indicateurs de Performance</h2>
             <p>Modélisez en temps réel le rendement d'exploitation et l'impact de l'unité Métha Campus.</p>
         </section>
 
-        <!-- Tableau de Bord Interactif / Objet-Frontière -->
         <section class="dashboard-simulator">
             <div class="sim-inputs">
                 <h3>Paramètres d'Exploitation</h3>
@@ -497,7 +537,6 @@
 
             <div class="sim-outputs">
                 
-                <!-- KPI 1 -->
                 <div class="kpi-row">
                     <div class="kpi-icon">
                         <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#1b4d3e" stroke-width="2"><path d="M12 2c1.88 0 3.39 1.19 4.12 2.81a6 6 0 0 1 1.76 8.59c.08.19.12.4.12.6a4 4 0 0 1-4 4c-.2 0-.41-.04-.6-.12A6 6 0 0 1 4.81 16.12 4 4 0 0 1 2 12c0-1.88 1.19-3.39 2.81-4.12A6 6 0 0 1 12 2z"/></svg>
@@ -508,7 +547,6 @@
                     </div>
                 </div>
 
-                <!-- KPI 2 -->
                 <div class="kpi-row">
                     <div class="kpi-icon">
                         <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#1b4d3e" stroke-width="2"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
@@ -519,10 +557,15 @@
                     </div>
                 </div>
 
-                <!-- KPI 3 -->
                 <div class="kpi-row">
                     <div class="kpi-icon">
-                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#1b4d3e" stroke-width="2"><path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#1b4d3e" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M12 2v20" />
+                            <path d="M4 14l8-10 8 10" />
+                            <path d="M4 14a4 4 0 0 0 8 0" />
+                            <path d="M12 14a4 4 0 0 0 8 0" />
+                            <path d="M9 22h6" />
+                        </svg>
                     </div>
                     <div class="kpi-data">
                         <span class="val" id="out-co2">0</span><span class="unit">kg</span>
@@ -533,7 +576,6 @@
             </div>
         </section>
 
-        <!-- Profil d'Investissement -->
         <section class="investor-specs">
             <div>
                 <h2>Faisabilité & Réalité Économique</h2>
@@ -558,13 +600,47 @@
             </div>
         </section>
 
-        <!-- Titre Section Équipe -->
+        <section id="contact">
+            <div class="section-title">
+                <h2>Tester notre proposition</h2>
+                <p>Vous souhaitez en savoir plus sur notre business plan ou évaluer une implémentation sur site ? Laissez-nous vos coordonnées.</p>
+            </div>
+            <div class="contact-card">
+                <form class="contact-form" onsubmit="event.preventDefault(); alert('Merci ! Votre demande a bien été transmise à l\'équipe Métha Campus.');">
+                    <div class="form-grid">
+                        <div class="input-box">
+                            <label for="name">Nom complet</label>
+                            <input type="text" id="name" placeholder="ex: Jean Durand" required>
+                        </div>
+                        <div class="input-box">
+                            <label for="email">Adresse e-mail</label>
+                            <input type="email" id="email" placeholder="ex: jean.durand@uca.fr" required>
+                        </div>
+                    </div>
+                    <div class="input-box">
+                        <label for="role">Votre profil</label>
+                        <select id="role" required>
+                            <option value="">Sélectionnez une option</option>
+                            <option value="investor">Investisseur / Financeur</option>
+                            <option value="uca">Direction UCA / CROUS</option>
+                            <option value="student">Étudiant(e) / Usager</option>
+                            <option value="other">Autre partenaire</option>
+                        </select>
+                    </div>
+                    <div class="input-box">
+                        <label for="message">Votre message</label>
+                        <textarea id="message" rows="3" placeholder="Comment pouvons-nous collaborer ?" required></textarea>
+                    </div>
+                    <button type="submit" class="hero-cta" style="width: 100%; border: none; cursor: pointer; font-size: 1.1rem; padding: 1.2rem; margin-top: 1rem;">Envoyer ma demande</button>
+                </form>
+            </div>
+        </section>
+
         <section class="section-title">
             <h2>Gouvernance du Projet</h2>
             <p>Une équipe unie sous une charte d'engagement collectif, combinant expertises analytiques et compétences en gestion de projet.</p>
         </section>
 
-        <!-- Organigramme Visuel de l'Équipe -->
         <section class="team-grid">
             <div class="member-card">
                 <div class="avatar">EB</div>
