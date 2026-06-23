@@ -64,6 +64,7 @@
             color: var(--white);
             padding: 5rem 2rem;
             position: relative;
+            overflow: hidden;
         }
 
         .hero-container {
@@ -73,6 +74,8 @@
             grid-template-columns: 1.2fr 0.8fr;
             gap: 4rem;
             align-items: center;
+            position: relative;
+            z-index: 10;
         }
 
         .hero-text h1 {
@@ -106,6 +109,114 @@
             background-color: #43a047;
             transform: translateY(-2px);
         }
+
+        /* NOUVEAU GRAPHISME HERO : Glassmorphism & Abstract Data */
+        .hero-graphic {
+            position: relative;
+            height: 400px;
+            width: 100%;
+        }
+
+        .glow-orb {
+            position: absolute;
+            border-radius: 50%;
+            filter: blur(50px);
+            opacity: 0.5;
+        }
+
+        .orb-1 {
+            width: 250px;
+            height: 250px;
+            background: #4caf50;
+            top: 20px;
+            right: 10px;
+            animation: pulse 8s ease-in-out infinite alternate;
+        }
+
+        .orb-2 {
+            width: 180px;
+            height: 180px;
+            background: #8bc34a;
+            bottom: 30px;
+            left: 20px;
+            animation: pulse 6s ease-in-out infinite alternate-reverse;
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(1); opacity: 0.4; }
+            100% { transform: scale(1.2); opacity: 0.7; }
+        }
+
+        .glass-card {
+            background: rgba(255, 255, 255, 0.08);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 20px;
+            position: absolute;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.15);
+            display: flex;
+            align-items: center;
+            color: white;
+        }
+
+        .main-glass {
+            width: 250px;
+            padding: 1.5rem;
+            gap: 1.2rem;
+            z-index: 3;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+
+        .glass-text { 
+            display: flex; 
+            flex-direction: column; 
+        }
+
+        .glass-title { 
+            font-size: 2.2rem; 
+            font-weight: 800; 
+            line-height: 1; 
+            margin-bottom: 0.2rem;
+        }
+
+        .glass-sub { 
+            font-size: 0.8rem; 
+            text-transform: uppercase; 
+            letter-spacing: 1px; 
+            color: #d1e7dd;
+            font-weight: 600;
+        }
+
+        .float-1 {
+            width: 80px;
+            height: 80px;
+            justify-content: center;
+            z-index: 4;
+            top: 15%;
+            left: 5%;
+            animation: float 5s ease-in-out infinite;
+        }
+
+        .float-2 {
+            padding: 1.2rem;
+            flex-direction: column;
+            align-items: flex-start;
+            z-index: 2;
+            bottom: 15%;
+            right: 0%;
+            width: 180px;
+            animation: float 7s ease-in-out infinite reverse;
+        }
+
+        @keyframes float {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-15px); }
+            100% { transform: translateY(0px); }
+        }
+
 
         /* Main Container */
         .container {
@@ -430,25 +541,34 @@
                 <p>Déploiement d'une unité de méthanisation anaérobie de proximité pour valoriser les biodéchets des restaurants universitaires du campus des Cézeaux.</p>
                 <a href="#simulateur" class="hero-cta">Tester le simulateur ROI</a>
             </div>
+            
             <div class="hero-graphic">
-                <svg width="100%" height="320" viewBox="0 0 400 320" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <rect x="20" y="240" width="360" height="4" rx="2" fill="#2c6e49" fill-opacity="0.3"/>
-                    <rect x="220" y="130" width="130" height="110" rx="8" fill="#ffffff" fill-opacity="0.15"/>
-                    <rect x="220" y="130" width="130" height="25" rx="4" fill="#ffffff" fill-opacity="0.1"/>
-                    <rect x="240" y="175" width="30" height="65" fill="#ffffff" fill-opacity="0.2"/>
-                    <rect x="290" y="175" width="40" height="35" fill="#ffffff" fill-opacity="0.2"/>
-                    <rect x="240" y="140" width="40" height="6" rx="3" fill="#ffffff" fill-opacity="0.4"/>
-                    <rect x="60" y="100" width="110" height="140" rx="20" fill="#4caf50"/>
-                    <path d="M60 120H170V240H60V120Z" fill="#2c6e49"/>
-                    <path d="M60 120C60 90 170 90 170 120H60Z" fill="#1b4d3e"/>
-                    <path d="M170 140H220" stroke="#ffffff" stroke-width="6" stroke-linecap="round"/>
-                    <path d="M115 70V95" stroke="#ffffff" stroke-width="4"/>
-                    <path d="M115 45C122 55 122 65 115 70C108 65 108 55 115 45Z" fill="#ff9800"/>
-                    <circle cx="360" cy="210" r="15" fill="#4caf50" fill-opacity="0.5"/>
-                    <line x1="360" y1="210" x2="360" y2="240" stroke="#2c6e49" stroke-width="3"/>
-                    <circle cx="40" cy="220" r="12" fill="#4caf50" fill-opacity="0.4"/>
-                    <line x1="40" y1="220" x2="40" y2="240" stroke="#2c6e49" stroke-width="2"/>
-                </svg>
+                <div class="glow-orb orb-1"></div>
+                <div class="glow-orb orb-2"></div>
+                
+                <div class="glass-card main-glass">
+                    <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="#4caf50" stroke-width="2">
+                        <path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/>
+                    </svg>
+                    <div class="glass-text">
+                        <span class="glass-title">-65%</span>
+                        <span class="glass-sub">Émissions CO₂</span>
+                    </div>
+                </div>
+
+                <div class="glass-card float-1">
+                    <svg width="36" height="36" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M12 22C15 22 18 19 18 15C18 11 14 8 12 6C10 8 6 11 6 15C6 19 9 22 12 22Z" fill="#4caf50"/>
+                    </svg>
+                </div>
+
+                <div class="glass-card float-2">
+                    <span class="glass-sub" style="margin-bottom: 10px;">Croissance (m³)</span>
+                    <svg width="100%" height="30" viewBox="0 0 100 30" preserveAspectRatio="none">
+                        <path d="M0 30 L 20 15 L 40 20 L 60 5 L 80 10 L 100 0" fill="none" stroke="#8bc34a" stroke-width="3"/>
+                        <path d="M0 30 L 20 15 L 40 20 L 60 5 L 80 10 L 100 0 V 30 Z" fill="rgba(139, 195, 74, 0.2)"/>
+                    </svg>
+                </div>
             </div>
         </div>
     </header>
@@ -491,7 +611,7 @@
                 
                 <div class="input-box">
                     <label for="dechets">Gisement brut collecté (kg / jour)</label>
-                    <input type="number" id="dechets" value="225" oninput="updateFromDechets()">
+                    <input type="number" id="dechets" value="58.5" step="0.1" oninput="updateFromDechets()">
                 </div>
             </div>
 
@@ -610,7 +730,7 @@
 
     <script>
         // --- Constantes du modèle de simulation ---
-        const KG_DECHET_PAR_REPAS = 0.039; 
+        const KG_DECHET_PAR_REPAS = 0.039; // Modification à 39g / repas selon la moyenne de Clermont
         const BIOGAZ_PAR_KG = 0.12;       
         const VALEUR_EURO_PAR_M3 = 1.30;  
         const ECONOMIE_TRAITEMENT_KG = 0.08; 
