@@ -3,243 +3,650 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Métha Campus | La cantine qui carbure</title>
+    <title>Métha Campus | Dossier Investisseurs</title>
     <style>
-        /* Variables de couleurs - Thème Écologie & Innovation */
         :root {
-            --primary-color: #2E7D32;
-            --secondary-color: #8BC34A;
-            --bg-color: #F9FBF9;
-            --text-main: #2C3E50;
-            --text-light: #7F8C8D;
+            --primary: #1b4d3e;
+            --primary-light: #2c6e49;
+            --accent: #4caf50;
+            --accent-light: #e8f5e9;
+            --dark: #212529;
+            --light: #f8f9fa;
+            --white: #ffffff;
+            --shadow: rgba(0, 0, 0, 0.05) 0px 10px 30px 0px;
+            --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
         }
 
         body {
-            font-family: 'Segoe UI', system-ui, sans-serif;
+            font-family: 'Segoe UI', -apple-system, BlinkMacSystemFont, Roboto, sans-serif;
             margin: 0;
             padding: 0;
-            background-color: var(--bg-color);
-            color: var(--text-main);
+            background-color: #f4f7f5;
+            color: var(--dark);
+            overflow-x: hidden;
+        }
+
+        /* Navbar & Brand */
+        nav {
+            background-color: var(--white);
+            padding: 1rem 2rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.02);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .logo-container {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-weight: 700;
+            font-size: 1.2rem;
+            color: var(--primary);
+            letter-spacing: 0.5px;
+        }
+
+        .badge-investor {
+            background-color: var(--primary);
+            color: var(--white);
+            padding: 0.3rem 0.8rem;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 600;
+        }
+
+        /* Hero Section */
+        header {
+            background: linear-gradient(150deg, var(--primary) 0%, var(--primary-light) 100%);
+            color: var(--white);
+            padding: 5rem 2rem;
+            position: relative;
+        }
+
+        .hero-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1.2fr 0.8fr;
+            gap: 4rem;
+            align-items: center;
+        }
+
+        .hero-text h1 {
+            font-size: 3.5rem;
+            line-height: 1.1;
+            margin: 0 0 1.5rem 0;
+            font-weight: 800;
+        }
+
+        .hero-text p {
+            font-size: 1.25rem;
+            color: #d1e7dd;
+            margin-bottom: 2.5rem;
+            font-weight: 300;
             line-height: 1.6;
         }
 
-        /* En-tête */
-        header {
-            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
-            color: white;
+        .hero-cta {
+            background-color: var(--accent);
+            color: var(--white);
+            padding: 0.9rem 2rem;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: var(--transition);
+            display: inline-block;
+            box-shadow: 0 4px 15px rgba(76, 175, 80, 0.3);
+        }
+
+        .hero-cta:hover {
+            background-color: #43a047;
+            transform: translateY(-2px);
+        }
+
+        /* Main Container */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
             padding: 4rem 2rem;
-            text-align: center;
         }
 
-        header h1 {
-            font-size: 3rem;
-            margin: 0 0 1rem 0;
-            letter-spacing: 2px;
+        /* Grid Proposition de Valeur */
+        .grid-propositions {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+            margin-bottom: 5rem;
         }
 
-        header p {
-            font-size: 1.5rem;
-            font-weight: 300;
+        .card-prop {
+            background-color: var(--white);
+            padding: 2.5rem 2rem;
+            border-radius: 16px;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+            border: 1px solid rgba(0,0,0,0.02);
+        }
+
+        .card-prop:hover {
+            transform: translateY(-5px);
+            box-shadow: rgba(0, 0, 0, 0.08) 0px 15px 35px 0px;
+        }
+
+        .card-prop h3 {
+            color: var(--primary);
+            font-size: 1.4rem;
+            margin: 1.5rem 0 1rem 0;
+        }
+
+        .card-prop p {
+            color: #5c677d;
+            font-size: 0.95rem;
+            line-height: 1.6;
             margin: 0;
         }
 
-        /* Conteneur principal */
-        .container {
-            max-width: 1000px;
-            margin: 0 auto;
-            padding: 2rem;
-        }
-
-        /* Section Concept */
-        .concept {
+        /* Section Section Title */
+        .section-title {
             text-align: center;
-            margin-bottom: 4rem;
+            max-width: 600px;
+            margin: 0 auto 3rem auto;
         }
 
-        /* Simulateur */
-        .simulator {
-            background: white;
+        .section-title h2 {
+            font-size: 2.2rem;
+            color: var(--primary);
+            margin-bottom: 1rem;
+            font-weight: 700;
+        }
+
+        .section-title p {
+            color: var(--dark);
+            opacity: 0.7;
+            font-size: 1.1rem;
+        }
+
+        /* Dashboard du Simulateur */
+        .dashboard-simulator {
+            background-color: var(--white);
+            border-radius: 24px;
+            box-shadow: var(--shadow);
+            padding: 3.5rem;
+            margin-bottom: 5rem;
+            display: grid;
+            grid-template-columns: 1fr 1.2fr;
+            gap: 4rem;
+            border: 1px solid rgba(0,0,0,0.01);
+        }
+
+        .sim-inputs {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .sim-inputs h3 {
+            font-size: 1.5rem;
+            margin-top: 0;
+            color: var(--primary);
+        }
+
+        .input-box {
+            background-color: var(--light);
+            padding: 1.5rem;
             border-radius: 12px;
-            box-shadow: 0 8px 24px rgba(0,0,0,0.08);
-            padding: 3rem;
-            margin-bottom: 4rem;
+            margin-bottom: 1.5rem;
+            border: 1px solid #e9ecef;
+            transition: var(--transition);
+        }
+
+        .input-box:focus-within {
+            border-color: var(--accent);
+            background-color: var(--white);
+            box-shadow: 0 0 0 4px rgba(76, 175, 80, 0.1);
+        }
+
+        .input-box label {
+            display: block;
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: #6c757d;
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+        }
+
+        .input-box input {
+            width: 100%;
+            border: none;
+            background: transparent;
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--primary);
+            outline: none;
+            padding: 0;
+        }
+
+        .divider-or {
+            text-align: center;
+            margin: 0.5rem 0 1.5rem 0;
+            font-weight: 700;
+            color: #ced4da;
+            position: relative;
+        }
+
+        /* Zone d'affichage des KPI */
+        .sim-outputs {
+            background: linear-gradient(135deg, #f8fbf9 0%, #edf4f0 100%);
+            padding: 2.5rem;
+            border-radius: 20px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            border: 1px solid #e1ebd5;
+        }
+
+        .kpi-row {
+            display: flex;
+            align-items: center;
+            gap: 1.5rem;
+            padding: 1.2rem 0;
+            border-bottom: 1px solid rgba(0,0,0,0.05);
+        }
+
+        .kpi-row:last-child {
+            border-bottom: none;
+        }
+
+        .kpi-icon {
+            background-color: var(--white);
+            width: 54px;
+            height: 54px;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.02);
+        }
+
+        .kpi-data {
+            flex-grow: 1;
+        }
+
+        .kpi-data .val {
+            font-size: 2.2rem;
+            font-weight: 800;
+            color: var(--primary);
+            line-height: 1;
+            margin-bottom: 0.2rem;
+            display: inline-block;
+        }
+
+        .kpi-data .unit {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: var(--primary-light);
+            margin-left: 2px;
+        }
+
+        .kpi-data label {
+            display: block;
+            font-size: 0.9rem;
+            color: #5c677d;
+            font-weight: 500;
+        }
+
+        /* Section Investisseurs & Stratégie */
+        .investor-specs {
+            background-color: var(--primary);
+            color: var(--white);
+            border-radius: 24px;
+            padding: 4rem;
+            margin-bottom: 5rem;
             display: grid;
             grid-template-columns: 1fr 1fr;
-            gap: 3rem;
+            gap: 4rem;
+            align-items: center;
         }
 
-        .simulator h2 {
-            grid-column: 1 / -1;
-            text-align: center;
-            color: var(--primary-color);
+        .investor-specs h2 {
+            font-size: 2.2rem;
             margin-top: 0;
         }
 
-        .input-group {
-            margin-bottom: 1.5rem;
+        .investor-specs p {
+            color: #d1e7dd;
+            line-height: 1.7;
+            font-size: 1.05rem;
         }
 
-        label {
-            display: block;
-            font-weight: bold;
-            margin-bottom: 0.5rem;
+        .spec-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
         }
 
-        input[type="number"] {
-            width: 100%;
-            padding: 0.8rem;
-            border: 2px solid #E0E0E0;
-            border-radius: 6px;
-            font-size: 1.1rem;
-            transition: border-color 0.3s;
+        .spec-list li {
+            background-color: rgba(255,255,255,0.05);
+            padding: 1.2rem;
+            border-radius: 12px;
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            border-left: 4px solid var(--accent);
         }
 
-        input[type="number"]:focus {
-            border-color: var(--primary-color);
-            outline: none;
+        /* Section Organigramme Équipe */
+        .team-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 1.5rem;
         }
 
-        .results {
-            background: #F1F8E9;
-            padding: 2rem;
-            border-radius: 8px;
-            border-left: 5px solid var(--secondary-color);
-        }
-
-        .result-item {
-            margin-bottom: 1.5rem;
-        }
-
-        .result-item span {
-            display: block;
-            font-size: 2rem;
-            font-weight: bold;
-            color: var(--primary-color);
-        }
-
-        /* Équipe */
-        .team {
+        .member-card {
+            background-color: var(--white);
+            border-radius: 16px;
+            padding: 2rem 1.5rem;
             text-align: center;
+            box-shadow: var(--shadow);
+            border: 1px solid rgba(0,0,0,0.01);
         }
 
-        .team p {
-            color: var(--text-light);
-            font-size: 0.95rem;
+        .member-card .avatar {
+            width: 70px;
+            height: 70px;
+            border-radius: 50%;
+            background-color: var(--accent-light);
+            margin: 0 auto 1.2rem auto;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--primary-light);
+            font-weight: 700;
+            font-size: 1.3rem;
         }
 
-        /* Responsive Design */
-        @media (max-width: 768px) {
-            .simulator {
+        .member-card h4 {
+            margin: 0 0 0.4rem 0;
+            font-size: 1.1rem;
+            color: var(--primary);
+        }
+
+        .member-card p {
+            margin: 0;
+            font-size: 0.85rem;
+            color: var(--accent);
+            text-transform: uppercase;
+            font-weight: 700;
+            letter-spacing: 0.5px;
+        }
+
+        footer {
+            background-color: var(--primary);
+            color: rgba(255,255,255,0.5);
+            text-align: center;
+            padding: 2rem;
+            font-size: 0.9rem;
+            border-top: 1px solid rgba(255,255,255,0.05);
+        }
+
+        /* Responsive UI */
+        @media (max-width: 992px) {
+            .hero-container, .dashboard-simulator, .investor-specs {
                 grid-template-columns: 1fr;
+                gap: 2.5rem;
+            }
+            .grid-propositions {
+                grid-template-columns: 1fr;
+            }
+            .team-grid {
+                grid-template-columns: repeat(2, 1fr);
             }
         }
     </style>
 </head>
 <body>
 
+    <nav>
+        <div class="logo-container">
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M2 12C2 6.47715 6.47715 2 12 2C17.5228 2 22 6.47715 22 12C22 17.5228 17.5228 22 12 22" stroke="#4caf50" stroke-width="2.5" stroke-linecap="round"/>
+                <path d="M12 6C7.58172 6 4 9.58172 4 14C4 18.4183 7.58172 22 12 22C16.4183 22 20 18.4183 20 14" stroke="#1b4d3e" stroke-width="2.5" stroke-linecap="round"/>
+                <path d="M12 22C15 22 18 19 18 15C18 11 14 8 12 6C10 8 6 11 6 15C6 19 9 22 12 22Z" fill="#4caf50"/>
+            </svg>
+            MÉTHA CAMPUS
+        </div>
+        <div class="badge-investor">Espace Investisseurs</div>
+    </nav>
+
     <header>
-        <h1>MÉTHA CAMPUS</h1>
-        <p>La cantine qui carbure</p>
+        <div class="hero-container">
+            <div class="hero-text">
+                <h1>La cantine<br>qui carbure.</h1>
+                <p>Déploiement d'une unité de méthanisation anaérobie de proximité pour valoriser les biodéchets des restaurants universitaires du campus des Cézeaux.</p>
+                <a href="#simulateur" class="hero-cta">Tester le simulateur ROI</a>
+            </div>
+            <div class="hero-graphic">
+                <svg width="100%" height="320" viewBox="0 0 400 320" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <rect x="20" y="240" width="360" height="4" rx="2" fill="#2c6e49" fill-opacity="0.3"/>
+                    <rect x="220" y="130" width="130" height="110" rx="8" fill="#ffffff" fill-opacity="0.15"/>
+                    <rect x="220" y="130" width="130" height="25" rx="4" fill="#ffffff" fill-opacity="0.1"/>
+                    <rect x="240" y="175" width="30" height="65" fill="#ffffff" fill-opacity="0.2"/>
+                    <rect x="290" y="175" width="40" height="35" fill="#ffffff" fill-opacity="0.2"/>
+                    <rect x="240" y="140" width="40" height="6" rx="3" fill="#ffffff" fill-opacity="0.4"/>
+                    <rect x="60" y="100" width="110" height="140" rx="20" fill="#4caf50"/>
+                    <path d="M60 120H170V240H60V120Z" fill="#2c6e49"/>
+                    <path d="M60 120C60 90 170 90 170 120H60Z" fill="#1b4d3e"/>
+                    <path d="M170 140H220" stroke="#ffffff" stroke-width="6" stroke-linecap="round"/>
+                    <path d="M115 70V95" stroke="#ffffff" stroke-width="4"/>
+                    <path d="M115 45C122 55 122 65 115 70C108 65 108 55 115 45Z" fill="#ff9800"/>
+                    <circle cx="360" cy="210" r="15" fill="#4caf50" fill-opacity="0.5"/>
+                    <line x1="360" y1="210" x2="360" y2="240" stroke="#2c6e49" stroke-width="3"/>
+                    <circle cx="40" cy="220" r="12" fill="#4caf50" fill-opacity="0.4"/>
+                    <line x1="40" y1="220" x2="40" y2="240" stroke="#2c6e49" stroke-width="2"/>
+                </svg>
+            </div>
+        </div>
     </header>
 
     <div class="container">
-        <section class="concept">
-            <h2>Une solution locale d'économie circulaire</h2>
-            <p>Notre projet vise à valoriser les biodéchets issus de la restauration universitaire du campus des Cézeaux (Restaurant des Cézeaux, IUT, Saxo). En transformant les restes alimentaires en énergie renouvelable par méthanisation anaérobie, nous réduisons les coûts de gestion tout en diminuant l'impact environnemental de l'UCA.</p>
-        </section>
-
-        <section class="simulator">
-            <h2>Simulateur de Rentabilité & Impact</h2>
-            
-            <div class="inputs-section">
-                <h3>Entrez vos données estimées</h3>
-                <div class="input-group">
-                    <label for="repas">Nombre de repas servis par jour :</label>
-                    <input type="number" id="repas" value="1000" oninput="updateFromRepas()">
-                </div>
-                <div style="text-align: center; color: var(--text-light); font-weight: bold;">
-                    — OU —
-                </div>
-                <div class="input-group">
-                    <label for="dechets">Kilos de biodéchets générés par jour :</label>
-                    <input type="number" id="dechets" value="150" oninput="updateFromDechets()">
-                </div>
+        
+        <section class="grid-propositions">
+            <div class="card-prop">
+                <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="#4caf50" stroke-width="2"><path d="M3 6h18M19 6v14c0 1-1 2-2 2H7c-1 0-2-1-2-2V6M8 6V4c0-1 1-2 2-2h4c1 0 2 1 2 2v2M10 11v6M14 11v6"/></svg>
+                <h3>Gisement Captif</h3>
+                <p>Valorisation immédiate des flux de biodéchets triés au Restaurant des Cézeaux, à l'IUT et au Saxo, éliminant les frais logistiques d'externalisation.</p>
             </div>
-
-            <div class="results">
-                <h3>Impact Quotidien Estimé</h3>
-                
-                <div class="result-item">
-                    Volume de biogaz produit (m³)
-                    <span id="out-biogaz">0</span>
-                </div>
-                
-                <div class="result-item">
-                    Économies générées (€)
-                    <span id="out-economies">0</span>
-                </div>
-                
-                <div class="result-item">
-                    CO2 évité (kg)
-                    <span id="out-co2">0</span>
-                </div>
+            <div class="card-prop">
+                <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="#4caf50" stroke-width="2"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>
+                <h3>Énergie Renouvelable</h3>
+                <p>Production directe de biométhane pour alimenter les besoins thermiques des infrastructures du campus, créant un cycle vertueux en circuit court.</p>
+            </div>
+            <div class="card-prop">
+                <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="#4caf50" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+                <h3>Impact Durable</h3>
+                <p>Alignement stratégique total avec les directives de transition écologique de l'UCA et réduction drastique de l'empreinte carbone globale.</p>
             </div>
         </section>
 
-        <section class="team">
-            <h2>L'Équipe Métha Campus</h2>
-            <p><strong>Chef de projet :</strong> Evan BISCAY</p>
-            <p><strong>Stratégies & Projet :</strong> Mohammed ALIMOUSSA, Valentin BOUCHET, Mathis BREMAUD, Alix GAUDEFROY</p>
-            <p><strong>Prototypes & Veille :</strong> Imane ACHOUR-TALET, Louane BRASSAC, Emma LAURENT</p>
-            <p><strong>Communication & IT :</strong> Capucine HUMMEL, Aristide OLLART</p>
+        <section class="section-title" id="simulateur">
+            <h2>Indicateurs de Performance</h2>
+            <p>Modélisez en temps réel le rendement d'exploitation et l'impact de l'unité Métha Campus.</p>
         </section>
+
+        <section class="dashboard-simulator">
+            <div class="sim-inputs">
+                <h3>Paramètres d'Exploitation</h3>
+                
+                <div class="input-box">
+                    <label for="repas">Volume de couverts (Repas / jour)</label>
+                    <input type="number" id="repas" value="1500" oninput="updateFromRepas()">
+                </div>
+                
+                <div class="divider-or">ou</div>
+                
+                <div class="input-box">
+                    <label for="dechets">Gisement brut collecté (kg / jour)</label>
+                    <input type="number" id="dechets" value="225" oninput="updateFromDechets()">
+                </div>
+            </div>
+
+            <div class="sim-outputs">
+                
+                <div class="kpi-row">
+                    <div class="kpi-icon">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#1b4d3e" stroke-width="2"><path d="M12 2c1.88 0 3.39 1.19 4.12 2.81a6 6 0 0 1 1.76 8.59c.08.19.12.4.12.6a4 4 0 0 1-4 4c-.2 0-.41-.04-.6-.12A6 6 0 0 1 4.81 16.12 4 4 0 0 1 2 12c0-1.88 1.19-3.39 2.81-4.12A6 6 0 0 1 12 2z"/></svg>
+                    </div>
+                    <div class="kpi-data">
+                        <span class="val" id="out-biogaz">0</span><span class="unit">m³</span>
+                        <label>Biogaz produit par jour</label>
+                    </div>
+                </div>
+
+                <div class="kpi-row">
+                    <div class="kpi-icon">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#1b4d3e" stroke-width="2"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
+                    </div>
+                    <div class="kpi-data">
+                        <span class="val" id="out-economies">0</span><span class="unit">€</span>
+                        <label>Économies financières cumulées / jour</label>
+                    </div>
+                </div>
+
+                <div class="kpi-row">
+                    <div class="kpi-icon">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#1b4d3e" stroke-width="2"><path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
+                    </div>
+                    <div class="kpi-data">
+                        <span class="val" id="out-co2">0</span><span class="unit">kg</span>
+                        <label>Émissions de CO₂ évitées / jour</label>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <section class="investor-specs">
+            <div>
+                <h2>Faisabilité & Réalité Économique</h2>
+                <p>Notre démarche délaisse les concepts théoriques pour se confronter aux impératifs terrain. Ce modèle d'infrastructure modulaire de petite échelle exige une maîtrise stricte des coûts d'investissement initiaux (CAPEX) pour garantir une rentabilité d'exploitation rapide.</p>
+                <p>L'étude intègre une feuille de route claire pour neutraliser le risque d'exploitation majeur : la qualité du tri à la source par les usagers.</p>
+            </div>
+            <div>
+                <ul class="spec-list">
+                    <li>
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#4caf50" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+                        <div><strong>Maîtrise du Tri :</strong> Signalétique & contrôles réguliers</div>
+                    </li>
+                    <li>
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#4caf50" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+                        <div><strong>Valorisation :</strong> Valorisation agronomique du digestat</div>
+                    </li>
+                    <li>
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#4caf50" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+                        <div><strong>Scalabilité :</strong> Extensible aux hôpitaux et entreprises</div>
+                    </li>
+                </ul>
+            </div>
+        </section>
+
+        <section class="section-title">
+            <h2>Gouvernance du Projet</h2>
+            <p>Une équipe unie sous une charte d'engagement collectif, combinant expertises analytiques et compétences en gestion de projet.</p>
+        </section>
+
+        <section class="team-grid">
+            <div class="member-card">
+                <div class="avatar">EB</div>
+                <h4>Evan Biscay</h4>
+                <p>Chef d'équipe</p>
+            </div>
+            <div class="member-card">
+                <div class="avatar">AO</div>
+                <h4>Aristide Ollart</h4>
+                <p>Informatique</p>
+            </div>
+            <div class="member-card">
+                <div class="avatar">MB</div>
+                <h4>Mathis Brémaud</h4>
+                <p>Gestion Projet</p>
+            </div>
+            <div class="member-card">
+                <div class="avatar">AG</div>
+                <h4>Alix Gaudefroy</h4>
+                <p>Gestion Projet</p>
+            </div>
+            <div class="member-card">
+                <div class="avatar">MA</div>
+                <h4>M. Alimoussa</h4>
+                <p>Stratégies</p>
+            </div>
+            <div class="member-card">
+                <div class="avatar">VB</div>
+                <h4>Valentin Bouchet</h4>
+                <p>Stratégies</p>
+            </div>
+            <div class="member-card">
+                <div class="avatar">EL</div>
+                <h4>Emma Laurent</h4>
+                <p>Veille Scientifique</p>
+            </div>
+            <div class="member-card">
+                <div class="avatar">CH</div>
+                <h4>Capucine Hummel</h4>
+                <p>Communication</p>
+            </div>
+        </section>
+
     </div>
 
-    <script>
-        // --- MODÈLE MATHÉMATIQUE (Variables à affiner pour la soutenance) ---
-        const KG_DECHET_PAR_REPAS = 0.15; // Un repas génère en moyenne 150g de biodéchets
-        const BIOGAZ_PAR_KG = 0.12;       // 1 kg de biodéchet génère environ 0.12 m³ de biogaz
-        const VALEUR_EURO_PAR_M3 = 1.30;  // 1 m³ de biogaz économise environ 1.30€ d'énergie (gaz naturel)
-        const ECONOMIE_TRAITEMENT_KG = 0.08; // Économie sur l'enlèvement des ordures (0.08€ / kg)
-        const CO2_EVITE_PAR_KG = 0.65;    // Évitement de 0.65 kg d'équivalent CO2 par kg composté/méthanisé
+    <footer>
+        &copy; 2026 Métha Campus — Projet de Transition Écologique & Économie Circulaire. Tous droits réservés.
+    </footer>
 
-        // Récupération des éléments du DOM
+    <script>
+        // --- Constantes du modèle de simulation ---
+        const KG_DECHET_PAR_REPAS = 0.15; 
+        const BIOGAZ_PAR_KG = 0.12;       
+        const VALEUR_EURO_PAR_M3 = 1.30;  
+        const ECONOMIE_TRAITEMENT_KG = 0.08; 
+        const CO2_EVITE_PAR_KG = 0.65;    
+
         const inputRepas = document.getElementById('repas');
         const inputDechets = document.getElementById('dechets');
         const outBiogaz = document.getElementById('out-biogaz');
         const outEconomies = document.getElementById('out-economies');
         const outCo2 = document.getElementById('out-co2');
 
-        // Met à jour les calculs à partir du nombre de repas
         function updateFromRepas() {
             let repas = parseFloat(inputRepas.value) || 0;
             let dechets = repas * KG_DECHET_PAR_REPAS;
-            inputDechets.value = dechets.toFixed(1); // Synchronise l'autre champ
+            inputDechets.value = dechets % 1 === 0 ? dechets : dechets.toFixed(1);
             calculerImpact(dechets);
         }
 
-        // Met à jour les calculs à partir des kilos de déchets
         function updateFromDechets() {
             let dechets = parseFloat(inputDechets.value) || 0;
             let repas = dechets / KG_DECHET_PAR_REPAS;
-            inputRepas.value = Math.round(repas); // Synchronise l'autre champ
+            inputRepas.value = Math.round(repas);
             calculerImpact(dechets);
         }
 
-        // Fonction centrale de calcul
         function calculerImpact(kilos) {
-            // Calculs
             let biogaz = kilos * BIOGAZ_PAR_KG;
             let economies = (biogaz * VALEUR_EURO_PAR_M3) + (kilos * ECONOMIE_TRAITEMENT_KG);
             let co2 = kilos * CO2_EVITE_PAR_KG;
 
-            // Affichage avec formatage
-            outBiogaz.textContent = biogaz.toFixed(1);
+            outBiogaz.textContent = biogaz % 1 === 0 ? biogaz : biogaz.toFixed(1);
             outEconomies.textContent = economies.toFixed(2);
-            outCo2.textContent = co2.toFixed(1);
+            outCo2.textContent = co2 % 1 === 0 ? co2 : co2.toFixed(1);
         }
 
-        // Initialisation au chargement de la page
+        // Init
         updateFromRepas();
     </script>
 </body>
