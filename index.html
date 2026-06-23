@@ -17,6 +17,11 @@
             --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
         }
 
+        /* Active le défilement fluide lors du clic sur le menu */
+        html {
+            scroll-behavior: smooth;
+        }
+
         body {
             font-family: 'Segoe UI', -apple-system, BlinkMacSystemFont, Roboto, sans-serif;
             margin: 0;
@@ -36,7 +41,7 @@
             box-shadow: 0 2px 10px rgba(0,0,0,0.02);
             position: sticky;
             top: 0;
-            z-index: 100;
+            z-index: 1000;
         }
 
         .logo-container {
@@ -47,15 +52,41 @@
             font-size: 1.2rem;
             color: var(--primary);
             letter-spacing: 0.5px;
+            text-decoration: none;
+        }
+
+        /* Menu de navigation */
+        .nav-links {
+            display: flex;
+            align-items: center;
+            gap: 2rem;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--dark);
+            font-weight: 600;
+            font-size: 0.95rem;
+            transition: var(--transition);
+        }
+
+        .nav-links a:hover {
+            color: var(--accent);
         }
 
         .badge-investor {
             background-color: var(--primary);
-            color: var(--white);
-            padding: 0.3rem 0.8rem;
+            color: var(--white) !important;
+            padding: 0.5rem 1rem;
             border-radius: 20px;
-            font-size: 0.8rem;
+            font-size: 0.85rem !important;
             font-weight: 600;
+            transition: var(--transition);
+        }
+
+        .badge-investor:hover {
+            background-color: var(--primary-light);
+            transform: translateY(-2px);
         }
 
         /* Hero Section - Background Image Full Width */
@@ -107,11 +138,22 @@
             transition: var(--transition);
             display: inline-block;
             box-shadow: 0 4px 15px rgba(76, 175, 80, 0.3);
+            border: none;
+            cursor: pointer;
         }
 
         .hero-cta:hover {
             background-color: #43a047;
             transform: translateY(-2px);
+        }
+
+        .btn-dark {
+            background-color: var(--dark);
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+        }
+        
+        .btn-dark:hover {
+            background-color: #343a40;
         }
 
         /* Main Container */
@@ -164,6 +206,7 @@
             text-align: center;
             max-width: 600px;
             margin: 0 auto 3rem auto;
+            padding-top: 4rem; /* Pour le décalage du menu collant */
         }
 
         .section-title h2 {
@@ -397,6 +440,7 @@
             display: grid;
             grid-template-columns: repeat(4, 1fr);
             gap: 1.5rem;
+            margin-bottom: 5rem;
         }
 
         .member-card {
@@ -437,6 +481,24 @@
             letter-spacing: 0.5px;
         }
 
+        /* Zone Téléchargement Livrables */
+        .livrables-section {
+            background-color: var(--light);
+            border-radius: 24px;
+            padding: 4rem;
+            text-align: center;
+            margin-bottom: 4rem;
+            border: 2px dashed #ced4da;
+        }
+
+        .livrables-grid {
+            display: flex;
+            justify-content: center;
+            gap: 1.5rem;
+            margin-top: 2.5rem;
+            flex-wrap: wrap;
+        }
+
         footer {
             background-color: var(--primary);
             color: rgba(255,255,255,0.5);
@@ -466,21 +528,30 @@
                 grid-template-columns: 1fr;
                 gap: 0;
             }
+            .nav-links {
+                display: none; /* Cache les liens texte sur mobile, garde juste le logo et le badge */
+            }
         }
     </style>
 </head>
 <body>
 
     <nav>
-        <div class="logo-container">
+        <a href="#" class="logo-container">
             <svg width="28" height="28" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <path d="M2 12C2 6.47715 6.47715 2 12 2C17.5228 2 22 6.47715 22 12C22 17.5228 17.5228 22 12 22" stroke="#4caf50" stroke-width="2.5" stroke-linecap="round"/>
                 <path d="M12 6C7.58172 6 4 9.58172 4 14C4 18.4183 7.58172 22 12 22C16.4183 22 20 18.4183 20 14" stroke="#1b4d3e" stroke-width="2.5" stroke-linecap="round"/>
                 <path d="M12 22C15 22 18 19 18 15C18 11 14 8 12 6C10 8 6 11 6 15C6 19 9 22 12 22Z" fill="#4caf50"/>
             </svg>
             MÉTHA CAMPUS
+        </a>
+        <div class="nav-links">
+            <a href="#concept">Concept</a>
+            <a href="#simulateur">Simulateur ROI</a>
+            <a href="#contact">Contact</a>
+            <a href="#equipe">L'Équipe</a>
+            <a href="#livrables" class="badge-investor">🔒 Espace Jury</a>
         </div>
-        <div class="badge-investor">Espace Investisseurs</div>
     </nav>
 
     <header>
@@ -495,7 +566,7 @@
 
     <div class="container">
         
-        <section class="grid-propositions">
+        <section id="concept" class="grid-propositions">
             <div class="card-prop">
                 <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="#4caf50" stroke-width="2"><path d="M3 6h18M19 6v14c0 1-1 2-2 2H7c-1 0-2-1-2-2V6M8 6V4c0-1 1-2 2-2h4c1 0 2 1 2 2v2M10 11v6M14 11v6"/></svg>
                 <h3>Gisement Captif</h3>
@@ -513,7 +584,7 @@
             </div>
         </section>
 
-        <section class="section-title" id="simulateur">
+        <section id="simulateur" class="section-title">
             <h2>Indicateurs de Performance</h2>
             <p>Modélisez en temps réel le rendement d'exploitation et l'impact de l'unité Métha Campus.</p>
         </section>
@@ -601,7 +672,7 @@
         </section>
 
         <section id="contact">
-            <div class="section-title">
+            <div class="section-title" style="padding-top: 2rem;">
                 <h2>Tester notre proposition</h2>
                 <p>Vous souhaitez en savoir plus sur notre business plan ou évaluer une implémentation sur site ? Laissez-nous vos coordonnées.</p>
             </div>
@@ -631,12 +702,12 @@
                         <label for="message">Votre message</label>
                         <textarea id="message" rows="3" placeholder="Comment pouvons-nous collaborer ?" required></textarea>
                     </div>
-                    <button type="submit" class="hero-cta" style="width: 100%; border: none; cursor: pointer; font-size: 1.1rem; padding: 1.2rem; margin-top: 1rem;">Envoyer ma demande</button>
+                    <button type="submit" class="hero-cta" style="width: 100%; margin-top: 1rem;">Envoyer ma demande</button>
                 </form>
             </div>
         </section>
 
-        <section class="section-title">
+        <section id="equipe" class="section-title">
             <h2>Gouvernance du Projet</h2>
             <p>Une équipe unie sous une charte d'engagement collectif, combinant expertises analytiques et compétences en gestion de projet.</p>
         </section>
@@ -684,6 +755,21 @@
             </div>
         </section>
 
+        <section id="livrables" class="livrables-section">
+            <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="#1b4d3e" stroke-width="2" style="margin-bottom: 1rem;">
+                <rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect>
+                <path d="M7 11V7a5 5 0 0 1 10 0v4"></path>
+            </svg>
+            <h2 style="color: var(--primary); margin-top: 0;">Espace de Suivi Pédagogique</h2>
+            <p style="color: var(--dark); max-width: 600px; margin: 0 auto;">Conformément à notre politique de confidentialité, l'accès aux plans conceptuels, modèles économiques et au cahier de laboratoire est restreint aux membres du jury Polytech.</p>
+            
+            <div class="livrables-grid">
+                <button onclick="downloadLivrable('Livrable_1_Executive_Summary')" class="hero-cta btn-dark">Télécharger Livrable 1</button>
+                <button onclick="downloadLivrable('Livrable_2_Gestion_Information')" class="hero-cta btn-dark">Télécharger Livrable 2</button>
+                <button onclick="downloadLivrable('Livrable_9_Plan_Conceptuel')" class="hero-cta btn-dark">Télécharger Livrable 9</button>
+            </div>
+        </section>
+
     </div>
 
     <footer>
@@ -691,6 +777,9 @@
     </footer>
 
     <script>
+        // --- Navigation Fluide & UX ---
+        // Le scroll fluide est géré en CSS : html { scroll-behavior: smooth; }
+
         // --- Constantes du modèle de simulation ---
         const KG_DECHET_PAR_REPAS = 0.039; // Moyenne de 39g / repas
         const BIOGAZ_PAR_KG = 0.12;       
@@ -728,8 +817,20 @@
             outCo2.textContent = co2 % 1 === 0 ? co2 : co2.toFixed(1);
         }
 
-        // Init
+        // Init Simulateur
         updateFromRepas();
+
+        // --- Gestion de la diffusion contrôlée (Livrable 2) ---
+        function downloadLivrable(docName) {
+            // Simulation d'une barrière de sécurité pour respecter les directives de confidentialité
+            const password = prompt("Accès restreint. Veuillez entrer le mot de passe enseignant (Indice : polytech) :");
+            
+            if (password === "polytech") {
+                alert("Authentification réussie. Le téléchargement de " + docName + ".pdf va commencer.\n\n(Note pour le jury : dans une version de production, le fichier serait hébergé dans un répertoire crypté ou privé sur GitHub).");
+            } else if (password !== null) {
+                alert("Accès refusé : mot de passe incorrect. Conformément à notre politique de confidentialité (Livrable 2), ces documents ne peuvent être divulgués au public.");
+            }
+        }
     </script>
 </body>
 </html>
