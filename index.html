@@ -110,113 +110,33 @@
             transform: translateY(-2px);
         }
 
-        /* NOUVEAU GRAPHISME HERO : Glassmorphism & Abstract Data */
+        /* Conteneur Photo Réaliste */
         .hero-graphic {
             position: relative;
-            height: 400px;
             width: 100%;
+            height: 400px;
         }
 
-        .glow-orb {
-            position: absolute;
-            border-radius: 50%;
-            filter: blur(50px);
-            opacity: 0.5;
+        .hero-image-container {
+            width: 100%;
+            height: 100%;
+            border-radius: 24px;
+            overflow: hidden;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.3);
+            border: 4px solid rgba(255, 255, 255, 0.1);
+            position: relative;
         }
 
-        .orb-1 {
-            width: 250px;
-            height: 250px;
-            background: #4caf50;
-            top: 20px;
-            right: 10px;
-            animation: pulse 8s ease-in-out infinite alternate;
+        .hero-image {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.7s ease;
         }
 
-        .orb-2 {
-            width: 180px;
-            height: 180px;
-            background: #8bc34a;
-            bottom: 30px;
-            left: 20px;
-            animation: pulse 6s ease-in-out infinite alternate-reverse;
+        .hero-image-container:hover .hero-image {
+            transform: scale(1.05);
         }
-
-        @keyframes pulse {
-            0% { transform: scale(1); opacity: 0.4; }
-            100% { transform: scale(1.2); opacity: 0.7; }
-        }
-
-        .glass-card {
-            background: rgba(255, 255, 255, 0.08);
-            backdrop-filter: blur(16px);
-            -webkit-backdrop-filter: blur(16px);
-            border: 1px solid rgba(255, 255, 255, 0.2);
-            border-radius: 20px;
-            position: absolute;
-            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.15);
-            display: flex;
-            align-items: center;
-            color: white;
-        }
-
-        .main-glass {
-            width: 250px;
-            padding: 1.5rem;
-            gap: 1.2rem;
-            z-index: 3;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-        }
-
-        .glass-text { 
-            display: flex; 
-            flex-direction: column; 
-        }
-
-        .glass-title { 
-            font-size: 2.2rem; 
-            font-weight: 800; 
-            line-height: 1; 
-            margin-bottom: 0.2rem;
-        }
-
-        .glass-sub { 
-            font-size: 0.8rem; 
-            text-transform: uppercase; 
-            letter-spacing: 1px; 
-            color: #d1e7dd;
-            font-weight: 600;
-        }
-
-        .float-1 {
-            width: 80px;
-            height: 80px;
-            justify-content: center;
-            z-index: 4;
-            top: 15%;
-            left: 5%;
-            animation: float 5s ease-in-out infinite;
-        }
-
-        .float-2 {
-            padding: 1.2rem;
-            flex-direction: column;
-            align-items: flex-start;
-            z-index: 2;
-            bottom: 15%;
-            right: 0%;
-            width: 180px;
-            animation: float 7s ease-in-out infinite reverse;
-        }
-
-        @keyframes float {
-            0% { transform: translateY(0px); }
-            50% { transform: translateY(-15px); }
-            100% { transform: translateY(0px); }
-        }
-
 
         /* Main Container */
         .container {
@@ -543,31 +463,8 @@
             </div>
             
             <div class="hero-graphic">
-                <div class="glow-orb orb-1"></div>
-                <div class="glow-orb orb-2"></div>
-                
-                <div class="glass-card main-glass">
-                    <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="#4caf50" stroke-width="2">
-                        <path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/>
-                    </svg>
-                    <div class="glass-text">
-                        <span class="glass-title">-65%</span>
-                        <span class="glass-sub">Émissions CO₂</span>
-                    </div>
-                </div>
-
-                <div class="glass-card float-1">
-                    <svg width="36" height="36" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <path d="M12 22C15 22 18 19 18 15C18 11 14 8 12 6C10 8 6 11 6 15C6 19 9 22 12 22Z" fill="#4caf50"/>
-                    </svg>
-                </div>
-
-                <div class="glass-card float-2">
-                    <span class="glass-sub" style="margin-bottom: 10px;">Croissance (m³)</span>
-                    <svg width="100%" height="30" viewBox="0 0 100 30" preserveAspectRatio="none">
-                        <path d="M0 30 L 20 15 L 40 20 L 60 5 L 80 10 L 100 0" fill="none" stroke="#8bc34a" stroke-width="3"/>
-                        <path d="M0 30 L 20 15 L 40 20 L 60 5 L 80 10 L 100 0 V 30 Z" fill="rgba(139, 195, 74, 0.2)"/>
-                    </svg>
+                <div class="hero-image-container">
+                    <img src="photo-crous.jpg" alt="Restaurant Universitaire du CROUS Clermont Auvergne" class="hero-image">
                 </div>
             </div>
         </div>
@@ -730,7 +627,7 @@
 
     <script>
         // --- Constantes du modèle de simulation ---
-        const KG_DECHET_PAR_REPAS = 0.039; // Modification à 39g / repas selon la moyenne de Clermont
+        const KG_DECHET_PAR_REPAS = 0.039; // Moyenne de 39g / repas
         const BIOGAZ_PAR_KG = 0.12;       
         const VALEUR_EURO_PAR_M3 = 1.30;  
         const ECONOMIE_TRAITEMENT_KG = 0.08; 
