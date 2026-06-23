@@ -543,7 +543,7 @@
             const pwdInput = document.getElementById('jury-password').value.toLowerCase().trim();
             const errorMsg = document.getElementById('password-error');
 
-            const expectedHash = "6201b1deef7d9e51c897f1f91b7d5268c7407a51d95d10b784a919ed74f7d2ee";
+            const expectedHash = "37a3827d2328ef2fc4cb4593b13bfc08fc8aec7dd897197d1b1c4458549b0c31";
 
             const encoder = new TextEncoder();
             const data = encoder.encode(pwdInput);
@@ -566,6 +566,9 @@
         menuBtn.addEventListener('click', () => {
             navLinks.classList.toggle('active');
         });
+
+        const o=["ArrowUp","ArrowUp","ArrowDown","ArrowDown","ArrowLeft","ArrowRight","ArrowLeft","ArrowRight","b","a"];let t=0;document.addEventListener("keydown",e=>{e.key===o[t]?(t++,t===o.length&&(!function(){document.body.classList.add("biogaz-overload"),alert("⚠️ SURALIMENTATION ACTIVÉE : Méthanisation en cours ! 🚀🔥");const o=["🍌","🍎","🥦","💨","🔥","⚡","🚜"];for(let t=0;t<80;t++)setTimeout(()=>{const t=document.createElement("div");t.classList.add("falling-emoji"),t.innerText=o[Math.floor(Math.random()*o.length)],t.style.left=100*Math.random()+"vw",t.style.animationDuration=2*Math.random()+1.5+"s",document.body.appendChild(t),setTimeout(()=>t.remove(),4e3)},2500*Math.random());setTimeout(()=>{document.body.classList.remove("biogaz-overload")},4e3)}(),t=0)):t=0});
+
     </script>
 </body>
 </html>
