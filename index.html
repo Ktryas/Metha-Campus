@@ -60,6 +60,21 @@
             transform: scale(1.08) rotate(-2deg); 
             box-shadow: 0 8px 20px rgba(27, 77, 62, 0.3);
         }
+        @keyframes overload-shake {
+            0%, 100% { transform: translate(1px, -2px) rotate(-1deg); }
+            50% { transform: translate(-1px, 2px) rotate(1deg); }
+    }
+        .biogaz-overload {
+            animation: overload-shake 0.3s infinite;
+            filter: hue-rotate(90deg) saturate(250%) contrast(120%);
+        }
+        .falling-emoji {
+            position: fixed; top: -100px; z-index: 9999; font-size: 2.5rem;
+            pointer-events: none; animation: fall linear forwards;
+        }
+        @keyframes fall {
+            to { transform: translateY(120vh) rotate(360deg); }
+        }
 
         .brand-name {
             font-size: 1.6rem;
