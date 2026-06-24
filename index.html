@@ -4,66 +4,290 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Métha Campus | Dossier Investisseurs</title>
+    <!-- Importation de la police Syne pour les titres -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    
     <style>
         :root {
-            --primary: #1b4d3e;
-            --primary-light: #2c6e49;
-            --accent: #4caf50;
-            --accent-light: #e8f5e9;
-            --dark: #212529;
-            --light: #f8f9fa;
-            --white: #ffffff;
-            --shadow: rgba(0, 0, 0, 0.05) 0px 10px 30px 0px;
-            --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            /* Palette Eco-Tech V2 (Dominante Verte) */
+            --bg: #f2fcf5; /* Blanc très légèrement teinté de vert */
+            --surface: #ffffff;
+            --primary: #064e3b; /* Vert forêt très sombre */
+            --primary-light: #047857; /* Vert émeraude sombre */
+            --accent: #10b981; /* Émeraude vif */
+            --accent-dark: #059669; /* Émeraude profond */
+            --accent-light: #d1fae5; /* Menthe clair */
+            --border: #a7f3d0; /* Bordure vert tendre */
+            --text-main: #064e3b; /* Texte vert très foncé */
+            --text-muted: #4b8a73; /* Texte secondaire vert grisâtre */
+            
+            --shadow: 0 4px 6px -1px rgba(6, 78, 59, 0.05), 0 2px 4px -2px rgba(6, 78, 59, 0.05);
+            --shadow-lg: 0 10px 15px -3px rgba(16, 185, 129, 0.15), 0 4px 6px -4px rgba(16, 185, 129, 0.1);
+            --transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
         }
 
         html { scroll-behavior: smooth; }
 
         body {
-            font-family: 'Segoe UI', -apple-system, BlinkMacSystemFont, Roboto, sans-serif;
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, Roboto, sans-serif;
             margin: 0;
             padding: 0;
-            background-color: #f4f7f5;
-            color: var(--dark);
+            background-color: var(--bg);
+            color: var(--text-main);
             overflow-x: hidden;
+            letter-spacing: -0.01em;
+        }
+
+        /* Application de la police Syne aux titres */
+        h1, h2, h3, h4, h5, h6 {
+            font-family: 'Syne', sans-serif;
+        }
+
+        /* Classe utilitaire pour le mot en vert */
+        .text-accent {
+            color: var(--accent);
         }
 
         /* Navbar & Brand */
         nav {
-            background-color: var(--white);
+            background-color: rgba(255, 255, 255, 0.9);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
             padding: 1rem 2rem;
             display: flex;
             align-items: center;
             justify-content: space-between;
-            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+            border-bottom: 1px solid var(--border);
             position: sticky;
             top: 0;
             z-index: 1000;
-            transition: var(--transition);
         }
 
         .logo-container { 
             display: flex; 
             align-items: center; 
-            gap: 1.2rem;
+            gap: 1rem;
             text-decoration: none; 
         }
         
         .logo-container img { 
-            height: 65px;
-            border-radius: 12px; 
-            transition: var(--transition); 
-            box-shadow: 0 4px 12px rgba(27, 77, 62, 0.2);
+            height: 55px;
+            border-radius: 10px; 
+            border: 1px solid var(--border);
+            box-shadow: var(--shadow);
+            transition: var(--transition);
         }
+
+        .logo-container:hover img {
+            transform: scale(1.05);
+        }
+
+        .brand-name {
+            font-size: 1.4rem;
+            font-weight: 800;
+            color: var(--primary);
+            letter-spacing: -0.03em;
+            display: flex;
+            flex-direction: column;
+            line-height: 1.1;
+        }
+
+        .brand-name span {
+            font-size: 0.8rem;
+            color: var(--accent-dark);
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            font-weight: 700;
+        }
+
+        .mobile-menu-btn { 
+            display: none; 
+            background: none; 
+            border: none; 
+            color: var(--primary); 
+            cursor: pointer; 
+        }
+
+        .nav-links { display: flex; align-items: center; gap: 2rem; }
+        .nav-links a { text-decoration: none; color: var(--primary-light); font-weight: 600; font-size: 0.95rem; transition: var(--transition); }
+        .nav-links a:hover { color: var(--accent); }
         
-        .logo-container:hover img { 
-            transform: scale(1.08) rotate(-2deg); 
-            box-shadow: 0 8px 20px rgba(27, 77, 62, 0.3);
+        .badge-investor { 
+            background-color: var(--accent); 
+            color: var(--surface) !important; 
+            padding: 0.6rem 1.2rem; 
+            border-radius: 8px; 
+            font-size: 0.85rem !important; 
+            box-shadow: 0 4px 10px rgba(16, 185, 129, 0.2);
         }
+        .badge-investor:hover { background-color: var(--accent-dark); transform: translateY(-1px); }
+
+        /* Hero Section avec l'image restaurée */
+        header {
+            padding: 8rem 2rem;
+            text-align: center;
+            background: linear-gradient(rgba(6, 78, 59, 0.85), rgba(16, 185, 129, 0.7)), url('photo-crous.jpg');
+            background-size: cover; 
+            background-position: center; 
+            background-attachment: fixed;
+            position: relative;
+        }
+        .hero-container { max-width: 800px; margin: 0 auto; position: relative; z-index: 10; }
+        .hero-text h1 { font-size: 3.8rem; line-height: 1.1; margin: 0 0 1.5rem 0; font-weight: 900; color: var(--surface); letter-spacing: -0.04em; text-shadow: 0 2px 10px rgba(0,0,0,0.2); }
+        .hero-text p { font-size: 1.25rem; color: var(--accent-light); margin-bottom: 2.5rem; line-height: 1.6; font-weight: 400; text-shadow: 0 1px 5px rgba(0,0,0,0.2); }
+        .hero-cta { background-color: var(--accent); color: var(--surface); padding: 1rem 2rem; border-radius: 8px; text-decoration: none; font-weight: 600; font-size: 1.05rem; transition: var(--transition); display: inline-block; box-shadow: 0 4px 14px rgba(16, 185, 129, 0.4); border: none; }
+        .hero-cta:hover { background-color: var(--surface); color: var(--primary); transform: translateY(-2px); box-shadow: 0 6px 20px rgba(255, 255, 255, 0.3); }
+
+        /* Main Container */
+        .container { max-width: 1200px; margin: -3rem auto 0 auto; padding: 2rem; position: relative; z-index: 20; }
+
+        /* Grid Proposition (Style Bento Vert) */
+        .grid-propositions { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2rem; margin-bottom: 6rem; }
+        .card-prop { background-color: var(--surface); padding: 2.5rem 2rem; border-radius: 16px; border: 1px solid var(--border); box-shadow: var(--shadow); transition: var(--transition); }
+        .card-prop:hover { transform: translateY(-4px); box-shadow: var(--shadow-lg); border-color: var(--accent); }
+        .card-prop h3 { color: var(--primary); font-size: 1.35rem; margin: 1.2rem 0 0.75rem 0; font-weight: 700; letter-spacing: -0.02em; }
+        .card-prop p { color: var(--text-muted); font-size: 0.95rem; line-height: 1.6; margin: 0; }
+
+        /* Partenaires */
+        .partners-section { text-align: center; margin-bottom: 6rem; padding: 2.5rem; background-color: var(--surface); border-radius: 16px; border: 1px solid var(--border); box-shadow: var(--shadow); }
+        .partners-section p { color: var(--accent-dark); font-size: 0.85rem; text-transform: uppercase; letter-spacing: 0.05em; font-weight: 700; margin-bottom: 1.5rem; }
+        .partners-logos { display: flex; justify-content: center; gap: 4rem; flex-wrap: wrap; align-items: center; }
+        .partners-logos span { font-weight: 800; font-size: 1.15rem; color: var(--primary-light); opacity: 0.6; transition: var(--transition); filter: grayscale(100%); }
+        .partners-logos span:hover { color: var(--primary); opacity: 1; filter: grayscale(0%); }
+
+        .section-title { text-align: center; max-width: 650px; margin: 0 auto 3rem auto; }
+        .section-title h2 { font-size: 2.2rem; color: var(--primary); margin-bottom: 0.75rem; font-weight: 800; letter-spacing: -0.03em; }
+        .section-title p { color: var(--text-muted); font-size: 1.1rem; line-height: 1.5; }
+
+        /* Dashboard Simulator (Neumorphic style from oui.html) */
+        .dashboard-simulator {
+            background: var(--bg);
+            border-radius: 18px;
+            /* Neomorphism clair : ombre portée basse + rehaut en haut-gauche */
+            box-shadow:
+                6px 6px 16px rgba(0,0,0,0.06),
+                -4px -4px 12px rgba(255,255,255,0.9);
+            border: 1px solid var(--border);
+            padding: 3rem;
+            margin-bottom: 6rem;
+            display: grid;
+            grid-template-columns: 1fr 1.2fr;
+            gap: 3rem;
+        }
+        .sim-inputs { display: flex; flex-direction: column; justify-content: center; }
+        .sim-inputs h3 { font-size: 1.2rem; margin-top: 0; margin-bottom: 1.8rem; color: var(--primary); font-weight: 700; letter-spacing: -0.2px; }
+        
+        /* Input néomorphique light */
+        .input-box {
+            background: var(--bg);
+            border-radius: 14px;
+            padding: 1.2rem 1.4rem;
+            margin-bottom: 1rem;
+            box-shadow:
+                inset 3px 3px 7px rgba(0,0,0,0.05),
+                inset -2px -2px 5px rgba(255,255,255,0.9);
+            border: 1px solid rgba(0,0,0,0.02);
+            transition: box-shadow 0.3s ease;
+        }
+        .input-box:focus-within {
+            box-shadow:
+                inset 3px 3px 7px rgba(0,0,0,0.05),
+                inset -2px -2px 5px rgba(255,255,255,0.9),
+                0 0 0 2px rgba(16, 185, 129, 0.2);
+        }
+        .input-box label { display: block; font-size: 0.68rem; text-transform: uppercase; letter-spacing: 1.5px; color: var(--text-muted); margin-bottom: 0.4rem; font-weight: 600; }
+        .input-box input { width: 100%; border: none; background: transparent; font-family: inherit; color: var(--primary); outline: none; font-size: 1.9rem; font-weight: 700; letter-spacing: -0.5px; }
+        .divider-or { text-align: center; margin: 0.2rem 0 1rem 0; font-weight: 600; color: var(--text-muted); font-size: 1.1rem; }
+        
+        /* KPI panel néomorphique light */
+        .sim-outputs {
+            background: var(--bg);
+            border-radius: 14px;
+            box-shadow:
+                inset 3px 3px 7px rgba(0,0,0,0.05),
+                inset -2px -2px 5px rgba(255,255,255,0.9);
+            border: 1px solid rgba(0,0,0,0.02);
+            display: flex;
+            flex-direction: column;
+        }
+        .kpi-row {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            padding: 1.2rem 1.4rem;
+            flex: 1;
+            transition: background 0.2s ease;
+            border-radius: 10px;
+            margin: 4px;
+        }
+        .kpi-row:hover { background: rgba(16, 185, 129, 0.05); }
+        .kpi-row + .kpi-row { border-top: 0.5px solid var(--border); margin-top: 0; border-radius: 0; }
+        
+        .kpi-icon {
+            width: 40px;
+            height: 40px;
+            border-radius: 11px;
+            background: var(--accent-light);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+            color: var(--accent-dark);
+        }
+        .kpi-data { flex-grow: 1; }
+        .kpi-data .val { font-size: 1.7rem; font-weight: 800; color: var(--primary); line-height: 1; margin-bottom: 0.2rem; display: inline-block; letter-spacing: -0.5px; }
+        .kpi-data .unit { font-size: 0.95rem; font-weight: 600; color: var(--accent-dark); margin-left: 3px; }
+        .kpi-data label { display: block; font-size: 0.78rem; color: var(--text-muted); margin-top: 2px; }
+
+        /* Investisseurs */
+        .investor-specs { background-color: var(--surface); border: 1px solid var(--border); box-shadow: var(--shadow); border-radius: 20px; padding: 3.5rem; margin-bottom: 6rem; display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: center; }
+        .investor-specs h2 { font-size: 2rem; margin-top: 0; color: var(--primary); font-weight: 800; letter-spacing: -0.03em; }
+        .investor-specs p { color: var(--text-muted); line-height: 1.6; font-size: 1.05rem; }
+        .spec-list { list-style: none; padding: 0; margin: 0; }
+        .spec-list li { background-color: var(--bg); padding: 1.2rem; border-radius: 12px; margin-bottom: 1rem; display: flex; align-items: center; gap: 1rem; border: 1px solid var(--border); color: var(--primary); font-weight: 500; }
+
+        /* FAQ Section */
+        .faq-section { max-width: 850px; margin: 0 auto 6rem auto; }
+        .faq-item { background-color: var(--surface); border-radius: 12px; margin-bottom: 1rem; border: 1px solid var(--border); box-shadow: var(--shadow); overflow: hidden; transition: var(--transition); }
+        .faq-item:hover { border-color: var(--accent); }
+        .faq-item details { padding: 1.5rem; }
+        .faq-item summary { font-size: 1.1rem; font-weight: 700; color: var(--primary); cursor: pointer; list-style: none; position: relative; padding-right: 2rem; letter-spacing: -0.01em; }
+        .faq-item summary::-webkit-details-marker { display: none; }
+        .faq-item summary::after { content: '→'; position: absolute; right: 0; top: 50%; transform: translateY(-50%); font-size: 1.2rem; color: var(--accent); transition: var(--transition); }
+        .faq-item details[open] summary::after { transform: translateY(-50%) rotate(90deg); color: var(--primary); }
+        .faq-item p { margin-top: 1rem; margin-bottom: 0; color: var(--text-muted); line-height: 1.6; font-size: 0.98rem; }
+
+        /* Équipe (Bento Grid Vert) */
+        .team-grid { display: grid; grid-template-columns: repeat(5, 1fr); gap: 1.5rem; margin-bottom: 6rem; }
+        .member-card { background-color: var(--surface); border-radius: 14px; padding: 1.75rem 1.25rem; text-align: center; border: 1px solid var(--border); box-shadow: var(--shadow); transition: var(--transition); }
+        .member-card:hover { transform: translateY(-3px); box-shadow: var(--shadow-lg); border-color: var(--accent); background-color: var(--bg); }
+        .member-card .avatar { width: 56px; height: 56px; border-radius: 50%; background-color: var(--accent-light); margin: 0 auto 1rem auto; display: flex; align-items: center; justify-content: center; color: var(--primary); font-weight: 800; font-size: 1.1rem; border: 2px solid var(--surface); box-shadow: 0 4px 6px rgba(16, 185, 129, 0.1); }
+        .member-card h4 { margin: 0 0 0.3rem 0; font-size: 1.05rem; color: var(--primary); font-weight: 700; }
+        .member-card p { margin: 0; font-size: 0.75rem; color: var(--accent-dark); text-transform: uppercase; font-weight: 800; letter-spacing: 0.05em; }
+
+        /* Zone Sécurisée */
+        .livrables-section { background-color: var(--primary); color: var(--surface); border-radius: 20px; padding: 4rem 3rem; margin-bottom: 4rem; box-shadow: var(--shadow-lg); text-align: center; position: relative; overflow: hidden; }
+        .livrables-section::before { content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 4px; background: linear-gradient(90deg, var(--accent), #34d399); }
+        .livrables-eyebrow { color: var(--border); font-size: 0.85rem; text-transform: uppercase; letter-spacing: 0.1em; font-weight: 700; margin-bottom: 1rem; display: block; }
+        .livrables-section h2 { font-size: 2.4rem; margin-top: 0; margin-bottom: 1rem; font-weight: 800; letter-spacing: -0.03em; }
+        .livrables-section p { color: var(--accent-light); font-size: 1.1rem; margin-bottom: 2.5rem; max-width: 600px; margin-left: auto; margin-right: auto; }
+        
+        .password-form-inline { display: flex; gap: 12px; align-items: center; justify-content: center; max-width: 500px; margin: 0 auto 10px auto; }
+        .password-form-inline input { background-color: #022c22; border: 1px solid var(--primary-light); color: white; padding: 0.85rem 1.25rem; border-radius: 8px; outline: none; font-size: 1rem; flex-grow: 1; transition: var(--transition); font-family: inherit; }
+        .password-form-inline input:focus { border-color: var(--accent); background-color: #064e3b; box-shadow: 0 0 0 3px rgba(16, 185, 129, 0.2); }
+        .password-form-inline button { background-color: var(--accent); color: var(--primary); border: none; padding: 0.85rem 1.75rem; border-radius: 8px; cursor: pointer; font-weight: 800; font-size: 1rem; transition: var(--transition); box-shadow: 0 2px 8px rgba(16, 185, 129, 0.2); }
+        .password-form-inline button:hover { background-color: var(--surface); color: var(--primary); transform: translateY(-1px); }
+        .error-msg { color: #fca5a5; font-size: 0.9rem; display: none; margin-top: 10px; font-weight: 500; }
+
+        footer { text-align: center; padding: 3rem 2rem; font-size: 0.9rem; color: var(--text-muted); border-top: 1px solid var(--border); background-color: var(--bg); }
+
+        /* ---- Animations Easter Egg ---- */
         @keyframes overload-shake {
             0%, 100% { transform: translate(1px, -2px) rotate(-1deg); }
             50% { transform: translate(-1px, 2px) rotate(1deg); }
-    }
+        }
         .biogaz-overload {
             animation: overload-shake 0.3s infinite;
             filter: hue-rotate(90deg) saturate(250%) contrast(120%);
@@ -76,170 +300,19 @@
             to { transform: translateY(120vh) rotate(360deg); }
         }
 
-        .brand-name {
-            font-size: 1.6rem;
-            font-weight: 800;
-            color: var(--primary);
-            letter-spacing: -0.5px;
-            display: flex;
-            flex-direction: column;
-            line-height: 1.1;
+        /* ---- Responsive ---- */
+        @media (max-width: 1024px) {
+            .grid-propositions { grid-template-columns: repeat(2, 1fr); }
+            .team-grid { grid-template-columns: repeat(3, 1fr); }
+            .dashboard-simulator, .investor-specs { grid-template-columns: 1fr; gap: 3rem; }
         }
-
-        .brand-name span {
-            font-size: 0.85rem;
-            color: var(--accent);
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            font-weight: 600;
-        }
-
-        .mobile-menu-btn { 
-            display: none; 
-            background: none; 
-            border: none; 
-            color: var(--primary); 
-            cursor: pointer; 
-            padding: 0.5rem; 
-        }
-
-        .nav-links { display: flex; align-items: center; gap: 2rem; }
-        .nav-links a { text-decoration: none; color: var(--dark); font-weight: 600; font-size: 0.95rem; transition: var(--transition); }
-        .nav-links a:hover { color: var(--accent); }
-        .badge-investor { background-color: var(--primary); color: var(--white) !important; padding: 0.5rem 1rem; border-radius: 20px; font-size: 0.85rem !important; font-weight: 600; }
-        .badge-investor:hover { background-color: var(--primary-light); transform: translateY(-2px); }
-
-        /* Hero Section */
-        header {
-            background: linear-gradient(rgba(27, 77, 62, 0.85), rgba(44, 110, 73, 0.7)), url('photo-crous.jpg');
-            background-size: cover; background-position: center; background-attachment: fixed;
-            color: var(--white); padding: 8rem 2rem; position: relative; text-align: center;
-        }
-        .hero-container { max-width: 900px; margin: 0 auto; display: flex; flex-direction: column; align-items: center; position: relative; z-index: 10; }
-        .hero-text h1 { font-size: 4rem; line-height: 1.1; margin: 0 0 1.5rem 0; font-weight: 800; }
-        .hero-text p { font-size: 1.3rem; color: #d1e7dd; margin-bottom: 2.5rem; font-weight: 300; line-height: 1.6; }
-        .hero-cta { background-color: var(--accent); color: var(--white); padding: 1rem 2.5rem; border-radius: 8px; text-decoration: none; font-weight: 600; font-size: 1.1rem; transition: var(--transition); display: inline-block; box-shadow: 0 4px 15px rgba(76, 175, 80, 0.3); border: none; cursor: pointer; }
-        .hero-cta:hover { background-color: #43a047; transform: translateY(-2px); }
-
-        /* Main Container */
-        .container { max-width: 1200px; margin: 0 auto; padding: 4rem 2rem; }
-
-        /* Grid Proposition */
-        .grid-propositions { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2rem; margin-bottom: 5rem; margin-top: -8rem; position: relative; z-index: 20; }
-        .card-prop { background-color: var(--white); padding: 2.5rem 2rem; border-radius: 16px; box-shadow: 0 15px 35px rgba(0,0,0,0.1); transition: var(--transition); border: 1px solid rgba(0,0,0,0.02); }
-        .card-prop:hover { transform: translateY(-5px); box-shadow: 0 20px 40px rgba(0,0,0,0.15); }
-        .card-prop h3 { color: var(--primary); font-size: 1.4rem; margin: 1.5rem 0 1rem 0; }
-        .card-prop p { color: #5c677d; font-size: 0.95rem; line-height: 1.6; margin: 0; }
-
-        /* Partenaires */
-        .partners-section { text-align: center; margin-bottom: 5rem; padding: 2rem 0; background-color: var(--white); border-radius: 16px; box-shadow: var(--shadow); margin-top: -3rem; position: relative; z-index: 10; }
-        .partners-section p { color: #6c757d; font-size: 0.9rem; text-transform: uppercase; letter-spacing: 1px; font-weight: 600; margin-bottom: 1.5rem; }
-        .partners-logos { display: flex; justify-content: center; gap: 4rem; flex-wrap: wrap; opacity: 0.6; filter: grayscale(100%); transition: var(--transition); }
-        .partners-logos:hover { opacity: 1; filter: grayscale(0%); }
-        .partners-logos span { font-weight: 800; font-size: 1.3rem; color: var(--primary); display: flex; align-items: center; }
-
-        .section-title { text-align: center; max-width: 600px; margin: 0 auto 3rem auto; padding-top: 4rem; }
-        .section-title h2 { font-size: 2.2rem; color: var(--primary); margin-bottom: 1rem; font-weight: 700; }
-        .section-title p { color: var(--dark); opacity: 0.7; font-size: 1.1rem; }
-
-        /* Dashboard */
-        .dashboard-simulator { background-color: var(--white); border-radius: 24px; box-shadow: var(--shadow); padding: 3.5rem; margin-bottom: 5rem; display: grid; grid-template-columns: 1fr 1.2fr; gap: 4rem; border: 1px solid rgba(0,0,0,0.01); }
-        .sim-inputs { display: flex; flex-direction: column; justify-content: center; }
-        .sim-inputs h3 { font-size: 1.5rem; margin-top: 0; color: var(--primary); }
-        .input-box { background-color: var(--light); padding: 1.5rem; border-radius: 12px; margin-bottom: 1.5rem; border: 1px solid #e9ecef; transition: var(--transition); }
-        .input-box:focus-within { border-color: var(--accent); background-color: var(--white); box-shadow: 0 0 0 4px rgba(76, 175, 80, 0.1); }
-        .input-box label { display: block; font-size: 0.85rem; text-transform: uppercase; letter-spacing: 1px; color: #6c757d; margin-bottom: 0.5rem; font-weight: 600; }
-        .input-box input { width: 100%; border: none; background: transparent; font-family: inherit; color: var(--primary); outline: none; padding: 0; font-size: 1.8rem; font-weight: 700; }
-        .divider-or { text-align: center; margin: 0.5rem 0 1.5rem 0; font-weight: 700; color: #ced4da; font-size: 1.5rem; }
-        
-        .sim-outputs { background: linear-gradient(135deg, #f8fbf9 0%, #edf4f0 100%); padding: 2.5rem; border-radius: 20px; display: flex; flex-direction: column; justify-content: space-between; border: 1px solid #e1ebd5; }
-        .kpi-row { display: flex; align-items: center; gap: 1.5rem; padding: 1.2rem 0; border-bottom: 1px solid rgba(0,0,0,0.05); }
-        .kpi-row:last-child { border-bottom: none; }
-        .kpi-icon { background-color: var(--white); width: 54px; height: 54px; border-radius: 12px; display: flex; align-items: center; justify-content: center; box-shadow: 0 4px 10px rgba(0,0,0,0.02); }
-        .kpi-data { flex-grow: 1; }
-        .kpi-data .val { font-size: 2.2rem; font-weight: 800; color: var(--primary); line-height: 1; margin-bottom: 0.2rem; display: inline-block; }
-        .kpi-data .unit { font-size: 1.1rem; font-weight: 600; color: var(--primary-light); margin-left: 2px; }
-        .kpi-data label { display: block; font-size: 0.9rem; color: #5c677d; font-weight: 500; }
-
-        /* Investisseurs */
-        .investor-specs { background-color: var(--primary); color: var(--white); border-radius: 24px; padding: 4rem; margin-bottom: 5rem; display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: center; }
-        .investor-specs h2 { font-size: 2.2rem; margin-top: 0; }
-        .investor-specs p { color: #d1e7dd; line-height: 1.7; font-size: 1.05rem; }
-        .spec-list { list-style: none; padding: 0; margin: 0; }
-        .spec-list li { background-color: rgba(255,255,255,0.05); padding: 1.2rem; border-radius: 12px; margin-bottom: 1rem; display: flex; align-items: center; gap: 1rem; border-left: 4px solid var(--accent); }
-
-        /* FAQ Section */
-        .faq-section { max-width: 800px; margin: 0 auto 5rem auto; }
-        .faq-item { background-color: var(--white); border-radius: 12px; margin-bottom: 1rem; box-shadow: var(--shadow); border: 1px solid rgba(0,0,0,0.01); overflow: hidden; }
-        .faq-item details { padding: 1.5rem; transition: var(--transition); }
-        .faq-item summary { font-size: 1.1rem; font-weight: 700; color: var(--primary); cursor: pointer; list-style: none; position: relative; padding-right: 2rem; }
-        .faq-item summary::-webkit-details-marker { display: none; }
-        .faq-item summary::after { content: '+'; position: absolute; right: 0; top: 50%; transform: translateY(-50%); font-size: 1.5rem; color: var(--accent); transition: transform 0.3s ease; }
-        .faq-item details[open] summary::after { content: '−'; transform: translateY(-50%) rotate(180deg); }
-        .faq-item p { margin-top: 1rem; margin-bottom: 0; color: #5c677d; line-height: 1.6; }
-
-        /* Équipe */
-        .team-grid { display: grid; grid-template-columns: repeat(5, 1fr); gap: 1.5rem; margin-bottom: 5rem; }
-        .member-card { background-color: var(--white); border-radius: 16px; padding: 2rem 1.5rem; text-align: center; box-shadow: var(--shadow); border: 1px solid rgba(0,0,0,0.01); }
-        .member-card .avatar { width: 70px; height: 70px; border-radius: 50%; background-color: var(--accent-light); margin: 0 auto 1.2rem auto; display: flex; align-items: center; justify-content: center; color: var(--primary-light); font-weight: 700; font-size: 1.3rem; }
-        .member-card h4 { margin: 0 0 0.4rem 0; font-size: 1.1rem; color: var(--primary); }
-        .member-card p { margin: 0; font-size: 0.85rem; color: var(--accent); text-transform: uppercase; font-weight: 700; letter-spacing: 0.5px; }
-
-        /* CTA */
-        .cta-usagers { background: linear-gradient(135deg, var(--accent-light) 0%, #d4edd6 100%); padding: 4rem 2rem; border-radius: 24px; text-align: center; margin-bottom: 5rem; border: 1px solid rgba(76, 175, 80, 0.2); }
-        .cta-usagers h2 { color: var(--primary); margin-top: 0; font-size: 2rem; }
-        .cta-usagers p { color: var(--primary-light); font-size: 1.1rem; max-width: 600px; margin: 0 auto 2rem auto; }
-        .btn-usager { background-color: var(--primary); color: var(--white); padding: 1rem 2.5rem; border-radius: 8px; text-decoration: none; font-weight: 600; display: inline-block; transition: var(--transition); box-shadow: 0 4px 15px rgba(27, 77, 62, 0.2); }
-        .btn-usager:hover { background-color: var(--primary-light); transform: translateY(-2px); color: var(--white); }
-
-        /* Zone Sécurisée */
-        .livrables-section { background-color: #1a1c1a; color: #ffffff; border-radius: 24px; padding: 4rem; margin-bottom: 4rem; box-shadow: 0 20px 40px rgba(0,0,0,0.2); position: relative; overflow: hidden; }
-        .livrables-section::before { content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 4px; background: linear-gradient(90deg, var(--accent), var(--primary-light)); }
-        .livrables-content { max-width: 600px; }
-        .livrables-eyebrow { color: #8bc34a; font-size: 0.85rem; text-transform: uppercase; letter-spacing: 2px; font-weight: 700; margin-bottom: 1rem; display: block; }
-        .livrables-section h2 { font-size: 3rem; margin-top: 0; margin-bottom: 1rem; line-height: 1.1; }
-        .livrables-section p { color: #a0aab2; font-size: 1.1rem; line-height: 1.6; margin-bottom: 2.5rem; }
-        
-        .password-form-inline { display: flex; gap: 15px; align-items: center; margin-bottom: 10px; }
-        .password-form-inline input { background-color: #2a2d2a; border: 1px solid #3d403d; color: white; padding: 1rem 1.5rem; border-radius: 30px; outline: none; font-size: 1rem; flex-grow: 1; max-width: 300px; transition: border-color 0.3s; }
-        .password-form-inline input:focus { border-color: #4caf50; }
-        .password-form-inline button { background-color: transparent; color: white; border: 1px solid #4caf50; padding: 1rem 2rem; border-radius: 30px; cursor: pointer; font-weight: bold; font-size: 1rem; transition: all 0.3s; }
-        .password-form-inline button:hover { background-color: rgba(76, 175, 80, 0.1); }
-        .error-msg { color: #ff6b6b; font-size: 0.9rem; display: none; margin-top: 10px; }
-
-        footer { background-color: var(--primary); color: rgba(255,255,255,0.5); text-align: center; padding: 2rem; font-size: 0.9rem; border-top: 1px solid rgba(255,255,255,0.05); }
-
-        /* ---- Responsive Media Queries ---- */
-        @media (max-width: 992px) {
+        @media (max-width: 768px) {
             .mobile-menu-btn { display: block; }
-            
-            .nav-links {
-                position: absolute;
-                top: 100%;
-                left: 0;
-                right: 0;
-                background-color: var(--white);
-                flex-direction: column;
-                padding: 2rem;
-                box-shadow: 0 15px 20px rgba(0,0,0,0.05);
-                clip-path: polygon(0 0, 100% 0, 100% 0, 0 0);
-                transition: clip-path 0.4s ease-in-out;
-                gap: 1.5rem;
-            }
-            
-            .nav-links.active {
-                clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
-            }
-
-            .brand-name { font-size: 1.3rem; }
-            .logo-container img { height: 50px; }
-
-            .dashboard-simulator, .investor-specs { grid-template-columns: 1fr; gap: 2.5rem; }
-            .grid-propositions { grid-template-columns: 1fr; margin-top: -4rem; }
-            .team-grid { grid-template-columns: repeat(2, 1fr); }
-            .hero-text h1 { font-size: 3rem; }
-            .password-form-inline { flex-direction: column; align-items: flex-start; }
-            .password-form-inline input { max-width: 100%; width: 100%; box-sizing: border-box; }
+            .nav-links { display: none; }
+            .hero-text h1 { font-size: 2.6rem; }
+            .grid-propositions, .team-grid { grid-template-columns: 1fr; }
+            .password-form-inline { flex-direction: column; align-items: stretch; }
+            .container { margin-top: -1rem; }
         }
     </style>
 </head>
@@ -255,7 +328,7 @@
         </a>
         
         <button class="mobile-menu-btn" id="menuBtn" aria-label="Ouvrir le menu">
-            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                 <line x1="3" y1="12" x2="21" y2="12"></line>
                 <line x1="3" y1="6" x2="21" y2="6"></line>
                 <line x1="3" y1="18" x2="21" y2="18"></line>
@@ -274,7 +347,7 @@
     <header>
         <div class="hero-container">
             <div class="hero-text">
-                <h1>La cantine qui carbure.</h1>
+                <h1>La cantine qui <span class="text-accent">carbure</span>.</h1>
                 <p>Déploiement d'une unité de méthanisation anaérobie de proximité pour valoriser les biodéchets des restaurants universitaires du campus des Cézeaux.</p>
                 <a href="#simulateur" class="hero-cta">Tester le simulateur ROI</a>
             </div>
@@ -285,17 +358,17 @@
         
         <section id="concept" class="grid-propositions">
             <div class="card-prop">
-                <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="#4caf50" stroke-width="2"><path d="M3 6h18M19 6v14c0 1-1 2-2 2H7c-1 0-2-1-2-2V6M8 6V4c0-1 1-2 2-2h4c1 0 2 1 2 2v2M10 11v6M14 11v6"/></svg>
+                <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#10b981" stroke-width="2.5"><path d="M3 6h18M19 6v14c0 1-1 2-2 2H7c-1 0-2-1-2-2V6M8 6V4c0-1 1-2 2-2h4c1 0 2 1 2 2v2M10 11v6M14 11v6"/></svg>
                 <h3>Gisement Captif</h3>
                 <p>Valorisation immédiate des flux de biodéchets triés au Restaurant des Cézeaux, à l'IUT et au Saxo, éliminant les frais logistiques d'externalisation.</p>
             </div>
             <div class="card-prop">
-                <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="#4caf50" stroke-width="2"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>
+                <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#10b981" stroke-width="2.5"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>
                 <h3>Énergie Renouvelable</h3>
                 <p>Production directe de biométhane pour alimenter les besoins thermiques des infrastructures du campus, créant un cycle vertueux en circuit court.</p>
             </div>
             <div class="card-prop">
-                <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="#4caf50" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+                <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#10b981" stroke-width="2.5"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
                 <h3>Impact Durable</h3>
                 <p>Alignement stratégique total avec les directives de transition écologique de l'UCA et réduction drastique de l'empreinte carbone globale.</p>
             </div>
@@ -318,62 +391,48 @@
         <section class="dashboard-simulator">
             <div class="sim-inputs">
                 <h3>Paramètres d'Exploitation</h3>
-                
                 <div class="input-box">
                     <label for="repas">Volume de couverts (Repas / jour)</label>
                     <input type="number" id="repas" value="1500" oninput="calculerImpact()">
                 </div>
-                
                 <div class="divider-or">×</div>
-                
                 <div class="input-box">
-                    <label for="dechet-plateau">Reste moyen par plateau (en grammes)</label>
+                    <label for="dechet-plateau">Reste moyen par plateau (grammes)</label>
                     <input type="number" id="dechet-plateau" value="39" step="1" oninput="calculerImpact()">
                 </div>
             </div>
-
             <div class="sim-outputs">
-                
                 <div class="kpi-row">
                     <div class="kpi-icon">
-                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#1b4d3e" stroke-width="2">
-                            <path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"></path>
-                        </svg>
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/></svg>
                     </div>
                     <div class="kpi-data">
                         <span class="val" id="out-total-dechets">0</span><span class="unit">kg</span>
                         <label>Biomasse brute collectée / jour</label>
                     </div>
                 </div>
-
                 <div class="kpi-row">
                     <div class="kpi-icon">
-                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#1b4d3e" stroke-width="2"><path d="M12 2c1.88 0 3.39 1.19 4.12 2.81a6 6 0 0 1 1.76 8.59c.08.19.12.4.12.6a4 4 0 0 1-4 4c-.2 0-.41-.04-.6-.12A6 6 0 0 1 4.81 16.12 4 4 0 0 1 2 12c0-1.88 1.19-3.39 2.81-4.12A6 6 0 0 1 12 2z"/></svg>
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2c1.88 0 3.39 1.19 4.12 2.81a6 6 0 0 1 1.76 8.59c.08.19.12.4.12.6a4 4 0 0 1-4 4c-.2 0-.41-.04-.6-.12A6 6 0 0 1 4.81 16.12 4 4 0 0 1 2 12c0-1.88 1.19-3.39 2.81-4.12A6 6 0 0 1 12 2z"/></svg>
                     </div>
                     <div class="kpi-data">
                         <span class="val" id="out-biogaz">0</span><span class="unit">m³</span>
                         <label>Biogaz produit par jour</label>
                     </div>
                 </div>
-
                 <div class="kpi-row">
                     <div class="kpi-icon">
-                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#1b4d3e" stroke-width="2"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
                     </div>
                     <div class="kpi-data">
                         <span class="val" id="out-economies">0</span><span class="unit">€</span>
                         <label>Économies financières cumulées / jour</label>
                     </div>
                 </div>
-
                 <div class="kpi-row">
                     <div class="kpi-icon">
-                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#1b4d3e" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                            <path d="M12 2v20" />
-                            <path d="M4 14l8-10 8 10" />
-                            <path d="M4 14a4 4 0 0 0 8 0" />
-                            <path d="M12 14a4 4 0 0 0 8 0" />
-                            <path d="M9 22h6" />
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M12 2v20"/><path d="M4 14l8-10 8 10"/><path d="M4 14a4 4 0 0 0 8 0"/><path d="M12 14a4 4 0 0 0 8 0"/><path d="M9 22h6"/>
                         </svg>
                     </div>
                     <div class="kpi-data">
@@ -381,7 +440,6 @@
                         <label>Émissions de CO₂ évitées / jour</label>
                     </div>
                 </div>
-
             </div>
         </section>
 
@@ -394,22 +452,22 @@
             <div>
                 <ul class="spec-list">
                     <li>
-                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#4caf50" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#10b981" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg>
                         <div><strong>Maîtrise du Tri :</strong> Signalétique & contrôles réguliers</div>
                     </li>
                     <li>
-                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#4caf50" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#10b981" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg>
                         <div><strong>Valorisation :</strong> Valorisation agronomique du digestat</div>
                     </li>
                     <li>
-                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#4caf50" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#10b981" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg>
                         <div><strong>Scalabilité :</strong> Extensible aux hôpitaux et entreprises</div>
                     </li>
                 </ul>
             </div>
         </section>
 
-        <section id="faq" class="section-title" style="padding-top: 2rem;">
+        <section id="faq" class="section-title">
             <h2>Questions Fréquentes</h2>
             <p>Les réponses aux interrogations les plus courantes sur notre unité de valorisation.</p>
         </section>
@@ -436,7 +494,7 @@
             <div class="faq-item">
                 <details>
                     <summary>Le projet est-il viable à l'échelle d'un seul campus ?</summary>
-                    <p>À petite échelle, la viabilité repose sur une maîtrise très stricte des coûts d'investissement initiaux. Notre modèle s'appuie également sur une mutualisation des déchets  et pourrait être étendu par la suite aux autres restaurations collectives de l'éducation, voire aux hôpitaux.</p>
+                    <p>À petite échelle, la viabilité repose sur une maîtrise très stricte des coûts d'investissement initiaux. Notre modèle s'appuie également sur une mutualisation des déchets et pourrait être étendu par la suite aux autres restaurations collectives de l'éducation, voire aux hôpitaux.</p>
                 </details>
             </div>
         </section>
@@ -480,12 +538,12 @@
             <div class="member-card">
                 <div class="avatar">EL</div>
                 <h4>Emma Laurent</h4>
-                <p>Veille Scientifique | GB</p>
+                <p>Veille Sci. | GB</p>
             </div>
             <div class="member-card">
                 <div class="avatar">CH</div>
                 <h4>Capucine Hummel</h4>
-                <p>Communication | GB</p>
+                <p>Com. | GB</p>
             </div>
             <div class="member-card">
                 <div class="avatar">LB</div>
@@ -500,17 +558,15 @@
         </section>
 
         <section id="livrables" class="livrables-section">
-            <div class="livrables-content">
-                <span class="livrables-eyebrow">ESPACE ENSEIGNANTS</span>
-                <h2>Nos livrables du hackathon.</h2>
-                <p>Accès réservé à l'équipe pédagogique. Entrez le mot de passe pour accéder aux documents.</p>
-                
-                <form onsubmit="unlockLivrables(event)" class="password-form-inline">
-                    <input type="password" id="jury-password" placeholder="Mot de passe enseignant" required>
-                    <button type="submit">Accéder</button>
-                </form>
-                <div id="password-error" class="error-msg">Mot de passe incorrect.</div>
-            </div>
+            <span class="livrables-eyebrow">ESPACE ENSEIGNANTS</span>
+            <h2>Nos livrables du hackathon.</h2>
+            <p>Accès réservé à l'équipe pédagogique. Entrez le mot de passe pour accéder aux documents d'évaluation.</p>
+            
+            <form onsubmit="unlockLivrables(event)" class="password-form-inline">
+                <input type="password" id="jury-password" placeholder="Mot de passe enseignant" required>
+                <button type="submit">Accéder</button>
+            </form>
+            <div id="password-error" class="error-msg">Mot de passe incorrect.</div>
         </section>
 
     </div>
@@ -549,7 +605,7 @@
             outCo2.textContent = co2 % 1 === 0 ? co2 : co2.toFixed(1);
         }
 
-        // Initialisation du simulateur
+        // Initialisation
         calculerImpact();
 
         // --- SÉCURITÉ HASH SHA-256 ---
@@ -566,7 +622,6 @@
             const hashArray = Array.from(new Uint8Array(hashBuffer));
             const hashHex = hashArray.map(b => b.toString(16).padStart(2, '0')).join('');
 
-            // Vérification
             if (hashHex === expectedHash) {
                 window.location.href = 'espace-enseignants.html';
             } else {
@@ -577,13 +632,14 @@
         // --- GESTION DU MENU MOBILE ---
         const menuBtn = document.getElementById('menuBtn');
         const navLinks = document.getElementById('navLinks');
-        
-        menuBtn.addEventListener('click', () => {
-            navLinks.classList.toggle('active');
-        });
+        if (menuBtn && navLinks) {
+            menuBtn.addEventListener('click', () => {
+                navLinks.style.display = navLinks.style.display === 'flex' ? 'none' : 'flex';
+            });
+        }
 
+        // --- EASTER EGG (KONAMI CODE) ---
         const o=["ArrowUp","ArrowUp","ArrowDown","ArrowDown","ArrowLeft","ArrowRight","ArrowLeft","ArrowRight","b","a"];let t=0;document.addEventListener("keydown",e=>{e.key===o[t]?(t++,t===o.length&&(!function(){document.body.classList.add("biogaz-overload"),alert("⚠️ SURALIMENTATION ACTIVÉE : Méthanisation en cours ! 🚀🔥");const o=["🍌","🍎","🥦","💨","🔥","⚡","🚜"];for(let t=0;t<80;t++)setTimeout(()=>{const t=document.createElement("div");t.classList.add("falling-emoji"),t.innerText=o[Math.floor(Math.random()*o.length)],t.style.left=100*Math.random()+"vw",t.style.animationDuration=2*Math.random()+1.5+"s",document.body.appendChild(t),setTimeout(()=>t.remove(),4e3)},2500*Math.random());setTimeout(()=>{document.body.classList.remove("biogaz-overload")},4e3)}(),t=0)):t=0});
-
     </script>
 </body>
 </html>
