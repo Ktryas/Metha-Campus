@@ -1,0 +1,364 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Métha Campus | Simulateur Avancé</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Syne:wght@400;600;700;800&display=swap" rel="stylesheet">
+    
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+    <style>
+        :root {
+            --bg: #f2fcf5;
+            --surface: #ffffff;
+            --primary: #064e3b;
+            --primary-light: #047857;
+            --accent: #10b981;
+            --accent-dark: #059669;
+            --accent-light: #d1fae5;
+            --border: #a7f3d0;
+            --text-main: #064e3b;
+            --text-muted: #4b8a73;
+            --shadow: 0 4px 6px -1px rgba(6, 78, 59, 0.05), 0 2px 4px -2px rgba(6, 78, 59, 0.05);
+            --transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: var(--bg);
+            color: var(--text-main);
+        }
+
+        h1, h2, h3 {
+            font-family: 'Syne', sans-serif;
+            color: var(--primary);
+        }
+
+        nav {
+            background-color: rgba(255, 255, 255, 0.9);
+            padding: 1rem 2rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .brand-name {
+            font-family: 'Syne', sans-serif;
+            font-size: 1.4rem;
+            font-weight: 800;
+            color: var(--primary);
+            text-decoration: none;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 2rem auto;
+            padding: 0 2rem;
+        }
+
+        .header-section {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .grid-layout {
+            display: grid;
+            grid-template-columns: 350px 1fr;
+            gap: 2rem;
+        }
+
+        /* Panneau des paramètres */
+        .controls-panel {
+            background: var(--surface);
+            padding: 2rem;
+            border-radius: 16px;
+            border: 1px solid var(--border);
+            box-shadow: var(--shadow);
+            height: fit-content;
+        }
+
+        .control-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .control-group label {
+            display: block;
+            font-size: 0.85rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+            color: var(--primary-light);
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        .control-group input {
+            width: 100%;
+            padding: 0.8rem;
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            font-family: inherit;
+            font-size: 1rem;
+            font-weight: 600;
+            color: var(--primary);
+            background: var(--bg);
+            box-sizing: border-box;
+            transition: var(--transition);
+        }
+
+        .control-group input:focus {
+            outline: none;
+            border-color: var(--accent);
+            box-shadow: 0 0 0 3px rgba(16, 185, 129, 0.2);
+        }
+
+        /* Panneau des résultats et graphiques */
+        .results-panel {
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
+        }
+
+        .kpi-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1.5rem;
+        }
+
+        .kpi-card {
+            background: var(--surface);
+            padding: 1.5rem;
+            border-radius: 16px;
+            border: 1px solid var(--border);
+            box-shadow: var(--shadow);
+            text-align: center;
+        }
+
+        .kpi-card .value {
+            font-size: 2rem;
+            font-weight: 800;
+            color: var(--accent-dark);
+            font-family: 'Syne', sans-serif;
+            margin-bottom: 0.5rem;
+        }
+
+        .kpi-card .label {
+            font-size: 0.9rem;
+            color: var(--text-muted);
+            font-weight: 500;
+        }
+
+        .chart-container {
+            background: var(--surface);
+            padding: 2rem;
+            border-radius: 16px;
+            border: 1px solid var(--border);
+            box-shadow: var(--shadow);
+            position: relative;
+            height: 350px;
+        }
+
+        @media (max-width: 900px) {
+            .grid-layout { grid-template-columns: 1fr; }
+            .kpi-grid { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+
+    <nav>
+        <a href="index.html" class="brand-name">← Retour à Métha Campus</a>
+    </nav>
+
+    <div class="container">
+        <div class="header-section">
+            <h2>Simulateur Économique & Environnemental</h2>
+            <p>Modélisation de l'exploitation sur 10 ans avec analyse du point de rentabilité (ROI).</p>
+        </div>
+
+        <div class="grid-layout">
+            <div class="controls-panel">
+                <h3>Paramètres Techniques</h3>
+                <div class="control-group">
+                    <label>Couverts / Jour</label>
+                    <input type="number" id="repas" value="1500" oninput="updateSimulation()">
+                </div>
+                <div class="control-group">
+                    <label>Reste par plateau (g)</label>
+                    <input type="number" id="dechet-plateau" value="39" oninput="updateSimulation()">
+                </div>
+                <div class="control-group">
+                    <label>Jours d'ouverture / An</label>
+                    <input type="number" id="jours-an" value="220" oninput="updateSimulation()">
+                </div>
+
+                <hr style="border: 0; border-top: 1px solid var(--border); margin: 2rem 0;">
+
+                <h3>Paramètres Financiers</h3>
+                <div class="control-group">
+                    <label>CAPEX initial (€)</label>
+                    <input type="number" id="capex" value="45000" oninput="updateSimulation()">
+                </div>
+                <div class="control-group">
+                    <label>OPEX Annuel (€ - Maintenance)</label>
+                    <input type="number" id="opex" value="2500" oninput="updateSimulation()">
+                </div>
+            </div>
+
+            <div class="results-panel">
+                
+                <div class="kpi-grid">
+                    <div class="kpi-card">
+                        <div class="value" id="kpi-roi">0 Ans</div>
+                        <div class="label">Retour sur Investissement</div>
+                    </div>
+                    <div class="kpi-card">
+                        <div class="value" id="kpi-economies">0 €</div>
+                        <div class="label">Économies Annuelles Nettes</div>
+                    </div>
+                    <div class="kpi-card">
+                        <div class="value" id="kpi-co2">0 t</div>
+                        <div class="label">CO₂ évité cumulé (10 ans)</div>
+                    </div>
+                </div>
+
+                <div class="chart-container">
+                    <canvas id="financeChart"></canvas>
+                </div>
+
+                <div class="chart-container">
+                    <canvas id="prodChart"></canvas>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Constantes de rendement
+        const BIOGAZ_PAR_KG = 0.12;       // m3 de biogaz par kg de déchet
+        const VALEUR_EURO_PAR_M3 = 1.30;  // Valorisation énergétique
+        const ECONOMIE_TRAITEMENT_KG = 0.08; // Economie sur la redevance d'enlèvement
+        const CO2_EVITE_PAR_KG = 0.65;    // kg de CO2 évité
+        const DIGESTAT_PAR_KG = 0.85;     // 85% de la masse devient du digestat (engrais)
+
+        // Initialisation des graphiques Chart.js
+        let financeChart, prodChart;
+
+        function initCharts() {
+            const ctxFin = document.getElementById('financeChart').getContext('2d');
+            financeChart = new Chart(ctxFin, {
+                type: 'line',
+                data: { labels: [], datasets: [] },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        title: { display: true, text: 'Flux de Trésorerie Cumulé (Cash Flow)' }
+                    },
+                    scales: {
+                        y: { title: { display: true, text: 'Euros (€)' } },
+                        x: { title: { display: true, text: 'Années' } }
+                    }
+                }
+            });
+
+            const ctxProd = document.getElementById('prodChart').getContext('2d');
+            prodChart = new Chart(ctxProd, {
+                type: 'bar',
+                data: { labels: [], datasets: [] },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        title: { display: true, text: 'Production Annuelle (Biogaz & Digestat)' }
+                    },
+                    scales: {
+                        y: { title: { display: true, text: 'Volume / Masse' } }
+                    }
+                }
+            });
+        }
+
+        function updateSimulation() {
+            // Récupération des valeurs
+            const repas = parseFloat(document.getElementById('repas').value) || 0;
+            const dechetPlateau = parseFloat(document.getElementById('dechet-plateau').value) || 0;
+            const joursAn = parseFloat(document.getElementById('jours-an').value) || 0;
+            const capex = parseFloat(document.getElementById('capex').value) || 0;
+            const opex = parseFloat(document.getElementById('opex').value) || 0;
+
+            // Calculs physiques annuels
+            const kgDechetsAn = (repas * (dechetPlateau / 1000)) * joursAn;
+            const biogazAn = kgDechetsAn * BIOGAZ_PAR_KG;
+            const digestatAn = kgDechetsAn * DIGESTAT_PAR_KG;
+            const co2An = (kgDechetsAn * CO2_EVITE_PAR_KG) / 1000; // en tonnes
+
+            // Calculs financiers annuels
+            const gainEnergie = biogazAn * VALEUR_EURO_PAR_M3;
+            const gainTraitement = kgDechetsAn * ECONOMIE_TRAITEMENT_KG;
+            const economieBruteAn = gainEnergie + gainTraitement;
+            const cashFlowAnnuel = economieBruteAn - opex;
+
+            // Calcul du ROI (Payback period)
+            let roi = cashFlowAnnuel > 0 ? (capex / cashFlowAnnuel).toFixed(1) : "Jamais";
+            
+            // Mise à jour des KPI
+            document.getElementById('kpi-roi').textContent = roi + " Ans";
+            document.getElementById('kpi-economies').textContent = Math.round(cashFlowAnnuel).toLocaleString('fr-FR') + " €";
+            document.getElementById('kpi-co2').textContent = Math.round(co2An * 10).toLocaleString('fr-FR') + " t";
+
+            // Préparation des données pour les graphiques (sur 10 ans)
+            let annees = [];
+            let cashFlowCumule = [];
+            let solde = -capex;
+
+            for(let i = 0; i <= 10; i++) {
+                annees.push("Année " + i);
+                cashFlowCumule.push(Math.round(solde));
+                solde += cashFlowAnnuel;
+            }
+
+            // Mise à jour Chart Financier
+            financeChart.data.labels = annees;
+            financeChart.data.datasets = [{
+                label: 'Trésorerie Nette (€)',
+                data: cashFlowCumule,
+                borderColor: '#10b981',
+                backgroundColor: 'rgba(16, 185, 129, 0.1)',
+                borderWidth: 3,
+                fill: true,
+                tension: 0.2
+            }];
+            financeChart.update();
+
+            // Mise à jour Chart Production
+            prodChart.data.labels = ['Production Annuelle'];
+            prodChart.data.datasets = [
+                {
+                    label: 'Biogaz (m³)',
+                    data: [Math.round(biogazAn)],
+                    backgroundColor: '#047857'
+                },
+                {
+                    label: 'Digestat (kg)',
+                    data: [Math.round(digestatAn)],
+                    backgroundColor: '#a7f3d0'
+                }
+            ];
+            prodChart.update();
+        }
+
+        // Initialisation au chargement
+        window.onload = () => {
+            initCharts();
+            updateSimulation();
+        };
+    </script>
+</body>
+</html>

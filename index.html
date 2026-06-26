@@ -150,21 +150,21 @@
         .card-prop h3 { color: var(--primary); font-size: 1.35rem; margin: 1.2rem 0 0.75rem 0; font-weight: 700; letter-spacing: -0.02em; }
         .card-prop p { color: var(--text-muted); font-size: 0.95rem; line-height: 1.6; margin: 0; }
         .card-prop-wide {
-    grid-column: 1 / -1; /* Force la carte à occuper toutes les colonnes disponibles */
-    display: flex;
-    align-items: center;
-    gap: 2rem;
-    text-align: left !important;
-}
+            grid-column: 1 / -1; 
+            display: flex;
+            align-items: center;
+            gap: 2rem;
+            text-align: left !important;
+        }
 
-@media (max-width: 1024px) {
-    .card-prop-wide {
-        flex-direction: column;
-        text-align: center !important;
-    }
-}
+        @media (max-width: 1024px) {
+            .card-prop-wide {
+                flex-direction: column;
+                text-align: center !important;
+            }
+        }
 
-/* Section Innovation Exclusive */
+        /* Section Innovation Exclusive */
         .innovation-highlight {
             background: var(--surface);
             border: 2px solid var(--accent);
@@ -258,7 +258,6 @@
         }
 
         /* Partenaires */
-        /* Section Partenaires - Alignement Grille Symétrique */
         .partners-section { 
             text-align: center; 
             margin-bottom: 6rem; 
@@ -280,7 +279,7 @@
         
         .partners-logos { 
             display: grid; 
-            grid-template-columns: repeat(3, 1fr); /* 3 colonnes d'une largeur strictement identique */
+            grid-template-columns: repeat(3, 1fr); 
             gap: 2rem; 
             align-items: center; 
         }
@@ -291,55 +290,53 @@
             color: var(--primary-light); 
             opacity: 0.6; 
             transition: var(--transition); 
-            text-align: center; /* Force le centrage du texte à l'intérieur de sa colonne */
+            text-align: center; 
             display: block;
         }
         
-        /* Gestion du responsive pour les téléphones */
         @media (max-width: 768px) {
             .partners-logos { 
-                grid-template-columns: 1fr; /* Passage sur une seule colonne sur mobile */
+                grid-template-columns: 1fr; 
                 gap: 1.5rem; 
             }
         }
         
         /* Bouton Maquette 3D */
-.cta-3d-container {
-    text-align: center;
-    margin-top: -2rem;
-    margin-bottom: 6rem;
-}
+        .cta-3d-container {
+            text-align: center;
+            margin-top: -2rem;
+            margin-bottom: 6rem;
+        }
 
-.btn-3d {
-    display: inline-flex;
-    align-items: center;
-    gap: 12px;
-    background-color: var(--primary);
-    color: var(--surface) !important;
-    padding: 1.2rem 2.5rem;
-    border-radius: 12px;
-    text-decoration: none;
-    font-weight: 700;
-    font-size: 1.15rem;
-    transition: var(--transition);
-    box-shadow: 0 4px 15px rgba(6, 78, 59, 0.2);
-}
+        .btn-3d {
+            display: inline-flex;
+            align-items: center;
+            gap: 12px;
+            background-color: var(--primary);
+            color: var(--surface) !important;
+            padding: 1.2rem 2.5rem;
+            border-radius: 12px;
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 1.15rem;
+            transition: var(--transition);
+            box-shadow: 0 4px 15px rgba(6, 78, 59, 0.2);
+        }
 
-.btn-3d:hover {
-    background-color: var(--accent);
-    transform: translateY(-4px);
-    box-shadow: 0 8px 25px rgba(16, 185, 129, 0.4);
-}
+        .btn-3d:hover {
+            background-color: var(--accent);
+            transform: translateY(-4px);
+            box-shadow: 0 8px 25px rgba(16, 185, 129, 0.4);
+        }
 
         .section-title { text-align: center; max-width: 650px; margin: 0 auto 3rem auto; }
         .section-title h2 { font-size: 2.2rem; color: var(--primary); margin-bottom: 0.75rem; font-weight: 800; letter-spacing: -0.03em; }
         .section-title p { color: var(--text-muted); font-size: 1.1rem; line-height: 1.5; }
 
-        /* Dashboard Simulator (Neumorphic style from oui.html) */
+        /* Dashboard Simulator */
         .dashboard-simulator {
             background: var(--bg);
             border-radius: 18px;
-            /* Neomorphism clair : ombre portée basse + rehaut en haut-gauche */
             box-shadow:
                 6px 6px 16px rgba(0,0,0,0.06),
                 -4px -4px 12px rgba(255,255,255,0.9);
@@ -353,7 +350,6 @@
         .sim-inputs { display: flex; flex-direction: column; justify-content: center; }
         .sim-inputs h3 { font-size: 1.2rem; margin-top: 0; margin-bottom: 1.8rem; color: var(--primary); font-weight: 700; letter-spacing: -0.2px; }
         
-        /* Input néomorphique light */
         .input-box {
             background: var(--bg);
             border-radius: 14px;
@@ -375,7 +371,6 @@
         .input-box input { width: 100%; border: none; background: transparent; font-family: inherit; color: var(--primary); outline: none; font-size: 1.9rem; font-weight: 700; letter-spacing: -0.5px; }
         .divider-or { text-align: center; margin: 0.2rem 0 1rem 0; font-weight: 600; color: var(--text-muted); font-size: 1.1rem; }
         
-        /* KPI panel néomorphique light */
         .sim-outputs {
             background: var(--bg);
             border-radius: 14px;
@@ -415,7 +410,6 @@
         .kpi-data .unit { font-size: 0.95rem; font-weight: 600; color: var(--accent-dark); margin-left: 3px; }
         .kpi-data label { display: block; font-size: 0.78rem; color: var(--text-muted); margin-top: 2px; }
 
-        /* ---- Tooltip Simulateur ---- */
         .tooltip-container {
             display: inline-flex;
             align-items: center;
@@ -458,7 +452,6 @@
             letter-spacing: normal;
         }
 
-        /* Petite flèche sous la bulle */
         .tooltip-text::after {
             content: "";
             position: absolute;
@@ -483,18 +476,22 @@
         .spec-list { list-style: none; padding: 0; margin: 0; }
         .spec-list li { background-color: var(--bg); padding: 1.2rem; border-radius: 12px; margin-bottom: 1rem; display: flex; align-items: center; gap: 1rem; border: 1px solid var(--border); color: var(--primary); font-weight: 500; }
 
-        /* FAQ Section */
+        /* FAQ Section Animée */
         .faq-section { max-width: 850px; margin: 0 auto 6rem auto; }
-        .faq-item { background-color: var(--surface); border-radius: 12px; margin-bottom: 1rem; border: 1px solid var(--border); box-shadow: var(--shadow); overflow: hidden; transition: var(--transition); }
+        .faq-item { background-color: var(--surface); border-radius: 12px; margin-bottom: 1rem; border: 1px solid var(--border); box-shadow: var(--shadow); overflow: hidden; transition: var(--transition); padding: 1.5rem; }
         .faq-item:hover { border-color: var(--accent); }
-        .faq-item details { padding: 1.5rem; }
-        .faq-item summary { font-size: 1.1rem; font-weight: 700; color: var(--primary); cursor: pointer; list-style: none; position: relative; padding-right: 2rem; letter-spacing: -0.01em; }
-        .faq-item summary::-webkit-details-marker { display: none; }
-        .faq-item summary::after { content: '→'; position: absolute; right: 0; top: 50%; transform: translateY(-50%); font-size: 1.2rem; color: var(--accent); transition: var(--transition); }
-        .faq-item details[open] summary::after { transform: translateY(-50%) rotate(90deg); color: var(--primary); }
-        .faq-item p { margin-top: 1rem; margin-bottom: 0; color: var(--text-muted); line-height: 1.6; font-size: 0.98rem; }
+        
+        .faq-summary { font-size: 1.1rem; font-weight: 700; color: var(--primary); cursor: pointer; position: relative; padding-right: 2rem; letter-spacing: -0.01em; }
+        .faq-summary::after { content: '→'; position: absolute; right: 0; top: 50%; transform: translateY(-50%); font-size: 1.2rem; color: var(--accent); transition: transform 0.3s ease, color 0.3s ease; }
+        .faq-item.active .faq-summary::after { transform: translateY(-50%) rotate(90deg); color: var(--primary); }
+        
+        .faq-content { display: grid; grid-template-rows: 0fr; transition: grid-template-rows 0.3s ease-out; }
+        .faq-content-inner { overflow: hidden; }
+        .faq-item.active .faq-content { grid-template-rows: 1fr; }
+        
+        .faq-content p { margin-top: 1rem; margin-bottom: 0; color: var(--text-muted); line-height: 1.6; font-size: 0.98rem; }
 
-        /* Équipe (Bento Grid Vert) */
+        /* Équipe */
         .team-grid { display: grid; grid-template-columns: repeat(5, 1fr); gap: 1.5rem; margin-bottom: 6rem; }
         .member-card { background-color: var(--surface); border-radius: 14px; padding: 1.75rem 1.25rem; text-align: center; border: 1px solid var(--border); box-shadow: var(--shadow); transition: var(--transition); }
         .member-card:hover { transform: translateY(-3px); box-shadow: var(--shadow-lg); border-color: var(--accent); background-color: var(--bg); }
@@ -553,16 +550,15 @@
         /* ---- Animations au défilement (Scroll Reveal) ---- */
         .reveal {
             opacity: 0;
-            transform: translateY(40px); /* L'élément commence 40px plus bas */
+            transform: translateY(40px);
             transition: opacity 0.8s ease-out, transform 0.8s cubic-bezier(0.2, 0.8, 0.2, 1);
         }
 
         .reveal.active {
             opacity: 1;
-            transform: translateY(0); /* Il remonte à sa place normale */
+            transform: translateY(0);
         }
 
-        /* Optionnel : pour faire apparaître les éléments en cascade (par exemple les cartes de l'équipe) */
         .reveal.delay-1 { transition-delay: 0.1s; }
         .reveal.delay-2 { transition-delay: 0.2s; }
         .reveal.delay-3 { transition-delay: 0.3s; }
@@ -676,7 +672,6 @@
             </div>
         </section>
 
-        <!-- NOUVEAU BOUTON MAQUETTE 3D À INSÉRER ICI -->
         <div class="cta-3d-container reveal delay-1">
             <a href="maquette.html" class="btn-3d">
                 <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
@@ -687,7 +682,6 @@
                 Implantation sur le campus des Cezeaux
             </a>
         </div>
-        <!-- FIN DU NOUVEAU BOUTON -->
 
         <section id="simulateur" class="section-title reveal">
             <h2>Indicateurs de Performance</h2>
@@ -755,7 +749,24 @@
                     </div>
                 </div>
             </div>
+
+            
         </section>
+        <section id="simulateur" class="section-title reveal">
+    <h2>Simulateur d'Impact</h2>
+    <p>Évaluez en temps réel le rendement d'exploitation et les gains financiers de l'unité Métha Campus.</p>
+    
+    <div style="margin-top: 2rem;">
+        <a href="simulateur-complet.html" class="btn-3d">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-right: 10px;">
+                <rect x="2" y="3" width="20" height="14" rx="2" ry="2"></rect>
+                <line x1="8" y1="21" x2="16" y2="21"></line>
+                <line x1="12" y1="17" x2="12" y2="21"></line>
+            </svg>
+            Accéder au simulateur complet
+        </a>
+    </div>
+</section>
 
         <section class="investor-specs reveal">
             <div>
@@ -786,30 +797,39 @@
             <p>Les réponses aux interrogations les plus courantes sur notre unité de valorisation.</p>
         </section>
 
+        <!-- Nouvelle Section FAQ Animée -->
         <section class="faq-section reveal delay-1">
             <div class="faq-item">
-                <details>
-                    <summary>Quels points de restauration sont concernés par la collecte ?</summary>
-                    <p>Notre projet cible directement le gisement captif du campus des Cézeaux, à savoir le Restaurant des Cézeaux, le Restaurant de l'IUT et les espaces Saxo (Cafétéria et Cantine).</p>
-                </details>
+                <div class="faq-summary">Quels points de restauration sont concernés par la collecte ?</div>
+                <div class="faq-content">
+                    <div class="faq-content-inner">
+                        <p>Notre projet cible directement le gisement captif du campus des Cézeaux, à savoir le Restaurant des Cézeaux, le Restaurant de l'IUT et les espaces Saxo (Cafétéria et Cantine).</p>
+                    </div>
+                </div>
             </div>
             <div class="faq-item">
-                <details>
-                    <summary>Pourquoi la méthanisation plutôt que le compostage ?</summary>
-                    <p>La méthanisation anaérobie offre un double avantage : elle permet bien sûr de valoriser la matière (le digestat), mais elle génère surtout du biogaz (méthane). Cette énergie renouvelable permet ensuite de réduire les coûts et l'empreinte de la gestion des infrastructures du campus.</p>
-                </details>
+                <div class="faq-summary">Pourquoi la méthanisation plutôt que le compostage ?</div>
+                <div class="faq-content">
+                    <div class="faq-content-inner">
+                        <p>La méthanisation anaérobie offre un double avantage : elle permet bien sûr de valoriser la matière (le digestat), mais elle génère surtout du biogaz (méthane). Cette énergie renouvelable permet ensuite de réduire les coûts et l'empreinte de la gestion des infrastructures du campus.</p>
+                    </div>
+                </div>
             </div>
             <div class="faq-item">
-                <details>
-                    <summary>Comment gérez-vous le risque lié au tri des déchets ?</summary>
-                    <p>Le facteur humain (un mauvais tri des restes) est effectivement identifié comme notre risque principal. Nous prévoyons de le neutraliser en amont grâce à une signalétique claire, des campagnes de sensibilisation et des contrôles réguliers.</p>
-                </details>
+                <div class="faq-summary">Comment gérez-vous le risque lié au tri des déchets ?</div>
+                <div class="faq-content">
+                    <div class="faq-content-inner">
+                        <p>Le facteur humain (un mauvais tri des restes) est effectivement identifié comme notre risque principal. Nous prévoyons de le neutraliser en amont grâce à une signalétique claire, des campagnes de sensibilisation et des contrôles réguliers.</p>
+                    </div>
+                </div>
             </div>
             <div class="faq-item">
-                <details>
-                    <summary>Le projet est-il viable à l'échelle d'un seul campus ?</summary>
-                    <p>À petite échelle, la viabilité repose sur une maîtrise très stricte des coûts d'investissement initiaux. Notre modèle s'appuie également sur une mutualisation des déchets et pourrait être étendu par la suite aux autres restaurations collectives de l'éducation, voire aux hôpitaux.</p>
-                </details>
+                <div class="faq-summary">Le projet est-il viable à l'échelle d'un seul campus ?</div>
+                <div class="faq-content">
+                    <div class="faq-content-inner">
+                        <p>À petite échelle, la viabilité repose sur une maîtrise très stricte des coûts d'investissement initiaux. Notre modèle s'appuie également sur une mutualisation des déchets et pourrait être étendu par la suite aux autres restaurations collectives de l'éducation, voire aux hôpitaux.</p>
+                    </div>
+                </div>
             </div>
         </section>
 
@@ -919,7 +939,6 @@
             outCo2.textContent = co2 % 1 === 0 ? co2 : co2.toFixed(1);
         }
 
-        // Initialisation
         calculerImpact();
 
         // --- SÉCURITÉ HASH SHA-256 ---
@@ -961,7 +980,6 @@
                 entries.forEach(entry => {
                     if (entry.isIntersecting) {
                         entry.target.classList.add('active');
-                        // observer.unobserve(entry.target); // Optionnel : décommenter pour jouer l'animation une seule fois
                     }
                 });
             }, {
@@ -971,6 +989,23 @@
 
             document.querySelectorAll('.reveal').forEach((el) => {
                 observer.observe(el);
+            });
+        });
+
+        // --- FAQ ANIMÉE (EFFET ACCORDÉON) ---
+        document.querySelectorAll('.faq-summary').forEach(summary => {
+            summary.addEventListener('click', () => {
+                const item = summary.parentElement;
+                
+                // Fermer toutes les autres questions
+                document.querySelectorAll('.faq-item').forEach(otherItem => {
+                    if (otherItem !== item) {
+                        otherItem.classList.remove('active');
+                    }
+                });
+                
+                // Ouvrir/fermer la question cliquée
+                item.classList.toggle('active');
             });
         });
     </script>
